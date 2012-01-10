@@ -1,0 +1,5 @@
+#!/bin/bash
+
+touch $1
+touch $1.index
+echo "00000000000000000000000000000000" | cat >> $1.src

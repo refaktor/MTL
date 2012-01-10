@@ -1,0 +1,9 @@
+#!/bin/bash
+
+usage() {
+    echo "j4m store wrk \"the comment\""
+}
+
+hash=`./toblob $1`
+un="$USER@$HOSTNAME"
+./toindex $1 "$hash" `cat ${1}.src` "$un" "$3"
