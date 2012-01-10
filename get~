@@ -1,5 +1,0 @@
-#!/bin/bash
-
-blob=`tail -n 1 ${1}.index | awk -F'\t' '{ print $1 }'`
-echo "$blob" > ${1}.src
-cat > $blob

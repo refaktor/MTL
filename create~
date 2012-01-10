@@ -1,5 +1,0 @@
-#!/bin/bash
-
-touch $1
-touch $1.index
-echo "none" | cat >> $1.src
