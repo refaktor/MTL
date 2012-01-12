@@ -65,3 +65,16 @@ at [asdasda] asdasds
 ~ Questions
 
 # can the same document be notes / todo-s and / reminders ??
+
+
+~ AD HOC Ideas and todo
+
++ user tagi ... 2@mojca 4@company(to mojca, for company)::
+  description description description description description description 
+  description description description description description description 
+  tisto 4 in 2 je le mogoče ok ideja @bi bilo za udeležene v todojih med sabo
+  'customer ali :customer ali $customer pa za naročnika... JA $CUSTOMER 
+  je ZAKON @peertag $customertag :ordinarytag
+- ugotovit kako se diffi applayayo (ker je od tega odvisno par idej (kot partial editing))
+- cli tool bo imel več načinov vpogleda v todo (kot "smartfilter") po subtitlu po grepih po tagih, tako da ti partial oštevilči in si zapomni zadnje oštevilčenje tako da lahko po njem editiraš (markaš + - zbrišeš updataš..)
+- naredi se nek basic emacs tool M-+ M-- M-# M-~ , skip to next title.. store, push, get..
