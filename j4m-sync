@@ -1,0 +1,29 @@
+#!/bin/bash
+
+showUsage() {
+    cat <<EOF
+Usage: 
+sync ssh://user@host.com:~/mynotes/test
+EOF
+}
+
+### this is just quick proof of concept version 
+### later we add a way to store remotes
+
+if [ $# -eq 1 ]; then
+    # copy the remote index
+    scp ${1}/.j4m/*.index .j4m/remote/.
+    # merge them
+    for index in .j4m/remote/*.index 
+    do
+	echo "MERGING: $index"
+	j4m-merge $1 $index
+    done
+    scp .j4m/*.index ${1}/.j4m/
+    # copy the blobs that arent already here, copy the missing there
+    rsync ${1}/.j4m/d .j4m/d
+    rsync .j4m/d ${1}/.j4m/d    
+else
+    showUsage
+fi
+

@@ -1,0 +1,25 @@
+#!/bin/bash
+
+showUsage() {
+    cat <<EOF
+Usage: 
+get doc ~ gets working to head
+get doc 1 ~ gets working to 1 version back #todo
+get doc 0 1 ~ gets last stored version to 1 back #todo
+EOF
+}
+
+LINE=1
+
+if [ $# -eq 2 ]; then
+    let "LINE= $2 + 1"
+elif [ $# -eq 1 ]; then
+    let "LINE= 1"    
+else
+    showUsage
+fi
+
+# tail -n $LINE ${1}.index | head -n 1 | awk '{ print $1 }'
+blob=`j4m-gethead $1`
+echo "$blob" > ${1}.src
+cat > $blob

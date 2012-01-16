@@ -1,0 +1,5 @@
+#!/bin/bash
+
+sum1=`md5sum .j4m/$1 | awk '{print $1}'`
+echo $sum1
+cp .j4m/$1 .j4m/d/${sum1}

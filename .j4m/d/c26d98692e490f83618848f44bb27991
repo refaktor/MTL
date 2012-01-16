@@ -1,0 +1,17 @@
+=J4M Commands
+
++ init
++ create
++ diff
++ cat
++ store
++ get
++ _gethead
++ _toblob
++ _toindex
+- ls :: lists notes inside .j4m
+- link :: links .j4m/todo to outside todo file for emacs editing etc
+- merge :: merges two indexes ; this will be needed for coop mode
+- push :: copies all missing blobs via scp and merges the indexes
+- pull :: pulls the changes and merges
+- conflict :: reports if it finds any conflicts in index (this is temp ; before we make this area work better)

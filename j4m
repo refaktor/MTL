@@ -1,0 +1,12 @@
+#!/bin/bash
+showCommands() {
+    cat commands.txt
+}
+
+if [ $# -gt 0 ]; then
+    CMD=$1
+    shift
+    j4m-$CMD $@
+else
+    showCommands
+fi

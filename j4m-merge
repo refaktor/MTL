@@ -1,0 +1,17 @@
+#!/bin/bash
+
+showUsage() {
+    cat <<EOF
+Usage: 
+cat doc mergefile
+EOF
+}
+
+### this is just quick proof of concept version 
+
+if [ $# -eq 2 ]; then
+    cat .j4m/${1}.index $2 | sort -u |  sort -k 3 > .j4m/${1}.index
+else
+    showUsage
+fi
+

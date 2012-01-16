@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# todo --- arg checking
+
+cat .j4m/${1}.index | awk -F'\t' '{ print "" $3 "\t" $4 "\t" $5 }'

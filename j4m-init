@@ -1,0 +1,17 @@
+#!/bin/bash
+
+showUsage() {
+    cat <<EOF
+Usage: 
+init ~ creates .j4m 
+EOF
+}
+
+if [ $# -eq 0 ]; then
+    if [ ! -d ".j4m" ] ; then
+	mkdir .j4m
+	mkdir .j4m/d
+    fi
+else
+    showUsage
+fi

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+showUsage() {
+    cat <<EOF
+Usage: 
+create doc ~ creates a doc and index and src files
+EOF
+}
+
+j4m-init
+
+if [ $# -eq 1 ]; then
+    touch .j4m/${1}
+    touch .j4m/${1}.index
+    echo "00000000000000000000000000000000" | cat >> .j4m/${1}.src
+else
+    showUsage
+fi
