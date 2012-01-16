@@ -11,16 +11,6 @@ We are making the basic backend work. On a proof of concept level we prooved it 
 usable so we can start using as soon as possible (and then develop further). 
 
 
-##Next
-
-+ make the scripts work from /usr/bin .. by finding j4m dir in current or parent dirs or user home dir.
-+ rename them to j4m_*** and make a command j4m *** work like invfox
-- make a basic asortment of scripts really work w/ usage some err checking
-+ make some inital way of cooperative work (so I can share this with colegue already) we have j4m sync
-- use!!!
-- ...
-
-
 ##Current commands
 
 Things will of course get streamlined and automated as much as it makes sense. This is heavily WIP!
@@ -54,7 +44,7 @@ Things will of course get streamlined and automated as much as it makes sense. T
 ##Current plans
 
 - improve all commands, add minimal argchecking
-- START USING!!!
+- start using!
 - make a dialect parser for notes/todos (this will enable additional context related commands)
 - make some basic emacs mode for j4m and notes/todos dialect
 - think how to streamline/automate commands
