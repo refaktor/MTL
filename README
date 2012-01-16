@@ -1,42 +1,31 @@
-J4M
-===
+#J4M
 
-Simple commandline tool for my work. Notes, todos & maybe more. 
+Simple bash/*ix based backend for notes/todo tool for my work. Inspired partially by `how I imagine github works`. 
 
-A merger of ideas from qwikitodo and others prototypes I made. From backend up meant to be appropriate for
-sharing and cooperative work.
+On top of it a parser will be built based on ideas from http://www.qwikitodo.com and others prototypes I made.
 
 
-State
------
+##State
 
-We made the basic backend work. Prooved it can be done. But all are just local scripts.
+We are making the basic backend work. On a proof of concept level we prooved it can work OK, so we are making it 
+usable so we can start using as soon as possible (and then develop further). 
 
 
-Next
-----
+##Next
 
-- make the scripts work from /usr/bin .. by finding j4m dir in current or parent dirs or user home dir.
-- rename them to j4m_*** and make a command j4m *** work like invfox
++ make the scripts work from /usr/bin .. by finding j4m dir in current or parent dirs or user home dir.
++ rename them to j4m_*** and make a command j4m *** work like invfox
 - make a basic asortment of scripts really work w/ usage some err checking
++ make some inital way of cooperative work (so I can share this with colegue already) we have j4m sync
 - use!!!
 - ...
 
 
-Basic idea
-----------
+##Current usage
 
-j4m init ; creates .j4m folder
-j4m create work ; creates .j4m/work and index and src file
-emacs work
-j4m store work
-emacs work
-j4m diff work
+	  #cd to the dir of your project
+	  j4m init
 
+##License
 
-
-
-License
--------
-
-Open source. To be decided.
+GNU GPL v2
