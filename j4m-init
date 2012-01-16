@@ -11,6 +11,7 @@ if [ $# -eq 0 ]; then
     if [ ! -d ".j4m" ] ; then
 	mkdir .j4m
 	mkdir .j4m/d
+	mkdir .j4m/remote
     fi
 else
     showUsage
