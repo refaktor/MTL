@@ -31,17 +31,20 @@ Things will of course get streamlined and automated as much as it makes sense. T
 	  j4m link work 	#creates a local symlink to the doc so you can edit it like local file
 	  emacs work		#edit the file
 	  j4m store work	#store the changes to the index
+
 	  emacs work		#edit the file
 	  j4m diff work		#compare the working file with last stored
 	  j4m store work	#store the changes again
 	  j4m log work		#show the log of stores
 	  j4m cat work		#cat the last stored version (TODO: same numbers logic as diff and get)
+
 	  emacs work		#make bad changes
 	  j4m diff work 0	#compare working to last stored
 	  j4m diff work 0 1	#compare the last 2 stored
 	  j4m get work	  	#set working version from the last stored version
 	  j4m get work 1	#set working version from previously stored version
-	  j4m create urgent	#create new doc
+
+	  j4m create notes	#create new doc
 	  j4m ls		#list the docs
 	  
 	  #first commands for the coop work
@@ -53,7 +56,7 @@ Things will of course get streamlined and automated as much as it makes sense. T
 - improve all commands, add minimal argchecking
 - START USING!!!
 - make a dialect parser for notes/todos (this will enable additional context related commands)
-- make some basic emacs more for j4m and notes/todos dialect
+- make some basic emacs mode for j4m and notes/todos dialect
 - think how to streamline/automate commands
 
 ##License
