@@ -9,8 +9,15 @@ EOF
 
 ### this is just quick proof of concept version 
 
+INDEX=".j4m/${1}.index"
+
 if [ $# -eq 2 ]; then
-    cat .j4m/${1}.index $2 | sort -u |  sort -k 3 > .j4m/${1}.index
+    if [ ! -f $INDEX  ]; then
+	touch $INDEX
+	echo "new index $1"
+    fi
+    diff $INDEX $2
+    cat $INDEX $2 | sort -u |  sort -k 3 > $INDEX
 else
     showUsage
 fi

@@ -21,5 +21,5 @@ fi
 
 # tail -n $LINE ${1}.index | head -n 1 | awk '{ print $1 }'
 blob=`j4m-gethead $1`
-echo "$blob" > ${1}.src
-cat > $blob
+echo "$blob" > .j4m/${1}.src
+cat .j4m/d/${blob} > .j4m/$1

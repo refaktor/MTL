@@ -10,6 +10,7 @@ ls
 link
 merge
 sync
+log
 #internal commands
 gethead
 toindex

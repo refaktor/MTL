@@ -16,13 +16,17 @@ if [ $# -eq 1 ]; then
     # merge them
     for index in .j4m/remote/*.index 
     do
-	echo "MERGING: $index"
-	j4m-merge $1 $index
+	DOC=`echo "$index" | sed 's/.j4m\/remote\/\([a-z0-9]*\)\.index/\1/'`
+	echo "MERGING: $DOC"
+	j4m-merge $DOC $index
     done
     scp .j4m/*.index ${1}/.j4m/
     # copy the blobs that arent already here, copy the missing there
-    rsync ${1}/.j4m/d .j4m/d
-    rsync .j4m/d ${1}/.j4m/d    
+    echo "RSYNCing the blobs"
+    rsync -a ${1}/.j4m/d/* .j4m/d
+    rsync -a .j4m/d/* ${1}/.j4m/d    
+    echo "OK"
+    #TODO LATER check for conflicts ... 
 else
     showUsage
 fi
