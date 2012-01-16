@@ -1,5 +1,0 @@
-#!/bin/bash
-
-sum1=`md5sum $1 | awk '{print $1}'`
-echo $sum1
-cp $1 d/${sum1}

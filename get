@@ -1,5 +1,0 @@
-#!/bin/bash
-
-blob=`gethead $1`
-echo "$blob" > ${1}.src
-cat > $blob
