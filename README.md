@@ -1,5 +1,7 @@
 #J4M
 
+!!!THIS IS HEAVILY WORK IN PROGRESS!!!
+
 Simple bash/*ix based backend for notes/todo tool for my work. Inspired partially by `how I imagine Git works`. 
 
 On top of it a parser will be built based on ideas from http://www.qwikitodo.com and other prototypes I made.
