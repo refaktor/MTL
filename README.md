@@ -55,7 +55,7 @@ Things will of course get streamlined and automated as much as it makes sense. T
 
 ##Platforms
 
-Currently seems to work on Linux and Cygwin.
+Seems to have no problems on Linux and Cygwin (should work on macs too.. if you try please report).
 
 ##License
 
