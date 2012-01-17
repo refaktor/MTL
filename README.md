@@ -1,6 +1,6 @@
 #J4M
 
-!!!THIS IS HEAVILY WORK IN PROGRESS!!!
+**!!!THIS IS HEAVILY WORK IN PROGRESS!!!**
 
 Simple bash/*ix based backend for notes/todo tool for my work. Inspired partially by `how I imagine Git works`. 
 
