@@ -51,6 +51,11 @@ Things will of course get streamlined and automated as much as it makes sense. T
 + make some basic emacs mode for j4m and notes/todos dialect
 - think how to streamline/automate commands
 - work on sync, merge so co-op mode will become usable!!
+- make tests!!
+
+##Platforms
+
+Currently seems to work on Linux and Cygwin.
 
 ##License
 
