@@ -1,6 +1,6 @@
 #J4M
 
-Simple bash/*ix based backend for notes/todo tool for my work. Inspired partially by `how I imagine github works`. 
+Simple bash/*ix based backend for notes/todo tool for my work. Inspired partially by `how I imagine Git works`. 
 
 On top of it a parser will be built based on ideas from http://www.qwikitodo.com and other prototypes I made.
 
@@ -37,17 +37,18 @@ Things will of course get streamlined and automated as much as it makes sense. T
 	  j4m create notes	#create new doc
 	  j4m ls		#list the docs
 	  
-	  #first commands for the coop work
-	  j4m sync /home/projectx/work	  	#2way sync all docs with another repo
-	  j4m sync projectx@work.com:~/work	#2way sync all docs with remote repo over ssh
+	  #first commands for the co-op work
+	  j4m sync /home/projectx/work	  	#2way sync all docs with another repo (TODO: merge of indexes doesn't work well)
+	  j4m sync projectx@work.com:~/work	#2way sync all docs with remote repo over ssh (still clumsy asks for pwd 3 times)
 
 ##Current plans
 
 - improve all commands, add minimal argchecking
-- start using!
++ start using!
 - make a dialect parser for notes/todos (this will enable additional context related commands)
-- make some basic emacs mode for j4m and notes/todos dialect
++ make some basic emacs mode for j4m and notes/todos dialect
 - think how to streamline/automate commands
+- work on sync, merge so co-op mode will become usable!!
 
 ##License
 
