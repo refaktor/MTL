@@ -8,7 +8,12 @@ EOF
 }
 
 if [ $# -eq 1 ]; then
-    ln -s .j4m/${1} ./${1}
+    NAME=$1
+    if [ "$1" == ":today" ]; then
+	NAME=`date --rfc-3339=date`
+    fi
+
+    ln -s .j4m/${NAME} ./${NAME}
 else
     showUsage
 fi

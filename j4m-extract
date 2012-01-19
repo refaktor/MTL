@@ -1,0 +1,33 @@
+#!/bin/bash
+
+showUsage() {
+    cat <<EOF
+Usage: 
+extract doc ~ extracts a document last store point (extracts all notdone stuff) primitive at this point.
+extract doc to doc2 ~ extracts a document last store point (extracts all notdone stuff) primitive at this point.
+EOF
+}
+
+getdoc(){
+    VAL=$1
+    if [ "$1" == ":today" ]; then
+	VAL=`date --rfc-3339=date`
+    fi    
+    echo "$VAL"
+}
+
+if [ $# -eq 1 ]; then
+    DOC=$(getdoc $1)
+    tail -n 1 .j4m/${DOC}.index | awk -F'\t' '{ print ".j4m/d/" $1 }' | xargs cat | grep -v "^+"
+
+elif [ $# -eq 3 ] && [ "$2" == "to" ]; then
+    DOC1=$(getdoc $1)
+    DOC2=$(getdoc $3)
+
+    echo $DOC1
+    echo $DOC2
+    tail -n 1 .j4m/${DOC1}.index | awk -F'\t' '{ print ".j4m/d/" $1 }' | xargs cat | grep -v "^+" > .j4m/${DOC2}    
+else
+    showUsage
+fi
+

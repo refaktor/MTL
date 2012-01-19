@@ -2,7 +2,6 @@
 init	initializes the .j4m dir in current path
 create	creates a document
 store	stores changes to index
-#comment
 get
 cat
 diff
@@ -11,6 +10,9 @@ link
 merge
 sync
 log
+extract
+#mv
+#rm
 #internal commands
 gethead
 toindex

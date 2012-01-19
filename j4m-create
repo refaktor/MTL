@@ -10,9 +10,14 @@ EOF
 j4m-init
 
 if [ $# -eq 1 ]; then
-    touch .j4m/${1}
-    touch .j4m/${1}.index
-    echo "00000000000000000000000000000000" | cat >> .j4m/${1}.src
+    NAME=$1
+    if [ "$1" == ":today" ]; then
+	NAME=`date --rfc-3339=date`
+    fi
+
+    touch .j4m/${NAME}
+    touch .j4m/${NAME}.index
+    echo "00000000000000000000000000000000" | cat >> .j4m/${NAME}.src
 else
     showUsage
 fi
