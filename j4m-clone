@@ -18,7 +18,7 @@ if [ $# -eq 1 ]; then
 elif [ $# -eq 2 ]; then
     if [ $1 == "to" ]; then
 	echo "cloning the j4m dir to remote location.."
-	mkdir -p ${2}
+#ls 	mkdir -p ${2}
 	scp -r .j4m ${2}/.j4m
 	echo "DONE"
     else
