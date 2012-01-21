@@ -1,4 +1,5 @@
 #!/bin/bash
+. j4m-funcs
 
 showUsage() {
     cat <<EOF
@@ -6,14 +7,6 @@ Usage:
 extract doc ~ extracts a document last store point (extracts all notdone stuff) primitive at this point.
 extract doc to doc2 ~ extracts a document last store point (extracts all notdone stuff) primitive at this point.
 EOF
-}
-
-getdoc(){
-    VAL=$1
-    if [ "$1" == ":today" ]; then
-	VAL=`date --rfc-3339=date`
-    fi    
-    echo "$VAL"
 }
 
 if [ $# -eq 1 ]; then

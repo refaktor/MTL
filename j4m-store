@@ -1,20 +1,20 @@
 #!/bin/bash
+. j4m-funcs
 
-usage() {
-    echo "j4m store wrk \"the comment\""
+showUsage() {
+    cat <<EOF
+Usage: 
+store wrk "the comment" ~ stores the workign doc to index
+EOF
 }
 
-getdoc(){
-    VAL=$1
-    if [ "$1" == ":today" ]; then
-	VAL=`date --rfc-3339=date`
-    fi    
-    echo "$VAL"
-}
+if [ $# -eq 1 ]; then
+    DOC=$(getdoc $1)
+    hash=`j4m-toblob $DOC`
+    UN="$USER@$HOSTNAME"
+    j4m-toindex $DOC "$hash" `cat .j4m/${DOC}.src` "$UN" "$2"
+    echo "$hash" | cat > .j4m/$DOC.src
+else
+    showUsage
+fi
 
-DOC=$(getdoc $1)
-
-hash=`j4m-toblob $DOC`
-un="$USER@$HOSTNAME"
-j4m-toindex $DOC "$hash" `cat .j4m/${DOC}.src` "$un" "$2"
-echo "$hash" | cat > .j4m/$DOC.src

@@ -1,0 +1,16 @@
+HOW TO MERGE
+- j4m sync
+- j4m sync doc :TODO
+
+WHAT HAPPENS ON CONFLICT
+
+- you get notified when syncing and shown the diff
+
+HOW DO YOU SEE CONFLICT
+
+- you can see the diff of your (last) and conflicting node ???
+- maybe in -y mode
+
+HOW DO YOU SOLVE CONFLICTS
+
+1) you look at the diff and update the current state ???

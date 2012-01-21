@@ -1,4 +1,5 @@
 #!/bin/bash
+. j4m-funcs
 
 showUsage() {
     cat <<EOF
@@ -9,7 +10,7 @@ get doc 0 1 ~ gets last stored version to 1 back #todo
 EOF
 }
 
-LINE=1
+LINE=0
 
 if [ $# -eq 2 ]; then
     let "LINE= $2 + 1"
@@ -19,7 +20,10 @@ else
     showUsage
 fi
 
+if [ ! "0" -eq "$LINE" ]; then
 # tail -n $LINE ${1}.index | head -n 1 | awk '{ print $1 }'
-blob=`j4m-gethead $1`
-echo "$blob" > .j4m/${1}.src
-cat .j4m/d/${blob} > .j4m/$1
+    DOC=$(getdoc $1)
+    blob=`j4m-gethead $DOC`
+    echo "$blob" > .j4m/${DOC}.src
+    cat .j4m/d/${blob} > .j4m/$DOC
+fi

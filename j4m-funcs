@@ -1,0 +1,14 @@
+#!/bin/bash
+
+getdoc(){
+    VAL=$1
+    if [ "$1" == ":today" ]; then
+	VAL=`date --rfc-3339=date`
+    elif [ "$1" == ":yesterday" ]; then
+	VAL=`date --rfc-3339=date -d yesterday`    
+    elif [ "$1" == ":tomorrow" ]; then
+	VAL=`date --rfc-3339=date -d tomorrow`
+    fi    
+    echo "$VAL"
+}
+

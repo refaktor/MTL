@@ -1,4 +1,5 @@
 #!/bin/bash
+. j4m-funcs
 
 showUsage() {
     cat <<EOF
@@ -9,7 +10,8 @@ EOF
 }
 
 if [ $# -eq 1 ]; then
-    tail -n 1 .j4m/${1}.index | awk -F'\t' '{ print ".j4m/d/" $1 }' | xargs cat
+    DOC=$(getdoc $1)
+    tail -n 1 .j4m/${DOC}.index | awk -F'\t' '{ print ".j4m/d/" $1 }' | xargs cat
 else
     showUsage
 fi

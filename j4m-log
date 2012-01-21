@@ -1,5 +1,16 @@
 #!/bin/bash
+. j4m-funcs
 
-# todo --- arg checking
+showUsage() {
+    cat <<EOF
+Usage: 
+log doc ~ shows log of doc
+EOF
+}
 
-cat .j4m/${1}.index | awk -F'\t' '{ print "" $3 "\t" $4 "\t" $5 }'
+if [ $# -eq 1 ]; then
+    DOC=$(getdoc $1)
+    cat .j4m/${DOC}.index | awk -F'\t' '{ print "" $3 "\t" $4 "\t" $5 }'
+else
+    showUsage
+fi

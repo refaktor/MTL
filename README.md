@@ -43,28 +43,33 @@ Things will of course get streamlined and automated as much as it makes sense. T
 	  # daily use
 	  j4m create :today
 	  j4m link :today
+	  j4m cat :yesterday
+	  j4m cat :tomorrow
 
-	  #sync two repos :todo
-	  j4m sync /home/projectx/work	  	#2way sync all docs with another repo (TODO: merge of indexes doesn't work well)
-	  j4m sync projectx@work.com:~/work	#2way sync all docs with remote repo over ssh (still clumsy asks for pwd 3 times)
-
-	  #clone and clone to repo :TODO
+	  #clone (from) and clone to repo (locally and remotely)
+	  j4m clone ../projectY
 	  j4m clone projectx@work.com:~/repo
 	  j4m clone to projectx@work.com:~/newrepo
 
+	  #sync two repos (locally or remotely)
+	  j4m sync ../projectx/work	  	#2way sync all docs with another repo
+	  j4m sync projectx@work.com:~/work	#2way sync all docs with remote repo over ssh
+
+
 ##Current plans
 
-- improve all commands, add minimal argchecking
-+ start using!
-- make a dialect parser for notes/todos (this will enable additional context related commands)
-+ make some basic emacs mode for j4m and notes/todos dialect
-- think how to streamline/automate commands
++ improve all commands, add minimal argchecking (done)
++ start using! (done)
++ make some basic emacs mode for j4m and notes/todos dialect (done)
+- figure out how to merge and what to do on conflicts, the exact workflow and messaging
 - work on sync, merge so co-op mode will become usable!!
+- make a dialect parser for notes/todos (this will enable additional context related commands)
+- think how to streamline/automate commands
 - make tests!!
 
 ##Platforms
 
-Seems to have no problems on Linux and Cygwin (should work on macs too.. if you try please report).
+Runs on Linux and Cygwin (should work on macs too.. if you try please report).
 
 ##License
 

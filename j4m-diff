@@ -1,4 +1,5 @@
 #!/bin/bash
+. j4m-funcs
 
 showUsage() {
     cat <<EOF
@@ -7,14 +8,6 @@ diff doc ~ compares working to head
 diff doc 1 ~ compares working to 1 version back
 diff doc 0 1 ~ compares last stored version to 1 back
 EOF
-}
-
-getdoc(){
-    VAL=$1
-    if [ "$1" == ":today" ]; then
-	VAL=`date --rfc-3339=date`
-    fi    
-    echo "$VAL"
 }
 
 

@@ -1,19 +1,21 @@
 #THIS IS JUST WIP LIST TO TEST INSTALLER
-init	initializes the .j4m dir in current path
-create	creates a document
-store	stores changes to index
-get
-cat
-diff
-ls
-link
-merge
-sync
-log
-extract
-#mv
-#rm
+init	      initializes the .j4m dir in current path
+create	      creates a document
+store	      stores changes to index
+get	      ..
+cat	      ..
+diff	      ..
+ls	      .
+link	      .
+merge	      .
+sync	      .
+log	      .
+extract	      .
+clone	.	
+#mv	.	
+#rm	.	
 #internal commands
-gethead
-toindex
-toblob
+gethead		.	
+toindex		.	
+toblob		.	
+funcs		.	

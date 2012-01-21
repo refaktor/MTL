@@ -1,0 +1,30 @@
+#!/bin/bash
+
+showUsage() {
+    cat <<EOF
+Usage: 
+clone ssh://user@host.com:~/mynotes/test
+clone to ssh://user@host.com:~/mynotes/test
+EOF
+}
+
+### this is just quick proof of concept version 
+### later we add a way to store remotes
+
+if [ $# -eq 1 ]; then
+	echo "cloning the j4m dir.."
+	scp -r ${1} .j4m
+	echo "DONE"
+elif [ $# -eq 2 ]; then
+    if [ $1 == "to" ]; then
+	echo "cloning the j4m dir to remote location.."
+	mkdir -p ${2}
+	scp -r .j4m ${2}/.j4m
+	echo "DONE"
+    else
+	showUsage
+    fi
+else
+    showUsage
+fi
+
