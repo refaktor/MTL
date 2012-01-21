@@ -17,31 +17,40 @@ usable so we can start using as soon as possible (and then develop further).
 
 Things will of course get streamlined and automated as much as it makes sense. This is heavily WIP!
 
-	  #cd to the dir of your project
+	  # cd to the dir of your project and start
 	  j4m init   	    	#creates the .j4m dir structure
 	  j4m create work	#creates doc work in .j4m dir and index/src files
 	  j4m link work 	#creates a local symlink to the doc so you can edit it like local file
-	  emacs work		#edit the file
-	  j4m store work	#store the changes to the index
 
+	  # work on todo
 	  emacs work		#edit the file
-	  j4m diff work		#compare the working file with last stored
 	  j4m store work	#store the changes again
+	  j4m diff work		#compare the working file with last stored
 	  j4m log work		#show the log of stores
 	  j4m cat work		#cat the last stored version (TODO: same numbers logic as diff and get)
 
-	  emacs work		#make bad changes
+	  # previous stores
 	  j4m diff work 0	#compare working to last stored
 	  j4m diff work 0 1	#compare the last 2 stored
 	  j4m get work	  	#set working version from the last stored version
 	  j4m get work 1	#set working version from previously stored version
 
-	  j4m create notes	#create new doc
+	  # more docs
 	  j4m ls		#list the docs
-	  
-	  #first commands for the co-op work
+	  j4m extract doc	#cat extraction of doc (extract is doc without done items)
+	  j4m extract doc to doc2 	  
+
+	  # daily use
+	  j4m create :today
+	  j4m link :today
+
+	  #sync two repos :todo
 	  j4m sync /home/projectx/work	  	#2way sync all docs with another repo (TODO: merge of indexes doesn't work well)
 	  j4m sync projectx@work.com:~/work	#2way sync all docs with remote repo over ssh (still clumsy asks for pwd 3 times)
+
+	  #clone and clone to repo :TODO
+	  j4m clone projectx@work.com:~/repo
+	  j4m clone to projectx@work.com:~/newrepo
 
 ##Current plans
 
