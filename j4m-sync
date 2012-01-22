@@ -12,20 +12,23 @@ EOF
 
 if [ $# -eq 1 ]; then
     # copy the remote index
+    echo "DELETING OLD INDEXES"
+    rm .j4m/remote/*
+    echo "COPYING INDEXES"
     scp ${1}/.j4m/*.index .j4m/remote/.
     # merge them
     for index in .j4m/remote/*.index 
     do
-	DOC=`echo "$index" | sed 's/.j4m\/remote\/\([a-z0-9]*\)\.index/\1/'`
+	DOC=`echo "$index" | sed 's/.j4m\/remote\/\([a-z0-9_-]*\)\.index/\1/'`
 	echo "MERGING: $DOC"
 	j4m-merge $DOC $index
     done
     scp .j4m/*.index ${1}/.j4m/
     # copy the blobs that arent already here, copy the missing there
-    echo "RSYNCing the blobs"
+    echo "RSYNCING THE BLOBS"
     rsync -a ${1}/.j4m/d/* .j4m/d
     rsync -a .j4m/d/* ${1}/.j4m/d    
-    echo "OK"
+    echo "OK - DONE"
     #TODO LATER check for conflicts ... 
 else
     showUsage
