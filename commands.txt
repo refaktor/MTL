@@ -1,5 +1,5 @@
 #THIS IS JUST WIP LIST TO TEST INSTALLER
-init	      initializes the .j4m dir in current path
+init	      initializes the .mtl dir in current path
 create	      creates a document
 store	      stores changes to index
 get	      ..

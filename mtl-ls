@@ -10,7 +10,7 @@ EOF
 # todo make it accept a pattern like ls
 
 if [ $# -eq 0 ]; then
-    ls .j4m/*.index | cut -d "." -f 2 | cut -d "/" -f 2
+    ls .mtl/*.index | cut -d "." -f 2 | cut -d "/" -f 2
 else
     showUsage
 fi

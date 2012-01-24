@@ -1,0 +1,4 @@
+#!/bin/bash
+
+date=`date --rfc-3339=seconds`
+echo -e "$2\t$3\t$date\t$4\t$5" | cat >> .mtl/${1}.index

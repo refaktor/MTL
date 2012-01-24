@@ -1,5 +1,5 @@
 #!/bin/bash
-. j4m-funcs
+. mtl-funcs
 
 showUsage() {
     cat <<EOF
@@ -10,9 +10,9 @@ EOF
 
 if [ $# -eq 1 ]; then
     DOC=$(getdoc $1)
-    touch .j4m/${DOC}
-    touch .j4m/${DOC}.index
-    echo "00000000000000000000000000000000" | cat >> .j4m/${DOC}.src
+    touch .mtl/${DOC}
+    touch .mtl/${DOC}.index
+    echo "00000000000000000000000000000000" | cat >> .mtl/${DOC}.src
 else
     showUsage
 fi

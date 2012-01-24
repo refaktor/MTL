@@ -1,5 +1,5 @@
 #!/bin/bash
-. j4m-funcs
+. mtl-funcs
 
 showUsage() {
     cat <<EOF
@@ -23,7 +23,7 @@ fi
 if [ ! "0" -eq "$LINE" ]; then
 # tail -n $LINE ${1}.index | head -n 1 | awk '{ print $1 }'
     DOC=$(getdoc $1)
-    blob=`j4m-gethead $DOC`
-    echo "$blob" > .j4m/${DOC}.src
-    cat .j4m/d/${blob} > .j4m/$DOC
+    blob=`mtl-gethead $DOC`
+    echo "$blob" > .mtl/${DOC}.src
+    cat .mtl/d/${blob} > .mtl/$DOC
 fi

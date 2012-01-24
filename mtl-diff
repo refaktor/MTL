@@ -1,5 +1,5 @@
 #!/bin/bash
-. j4m-funcs
+. mtl-funcs
 
 showUsage() {
     cat <<EOF
@@ -13,13 +13,13 @@ EOF
 
 if [ $# -eq 3 ]; then
     DOC=$(getdoc $1)
-    diff .j4m/d/`j4m-gethead $DOC $2` .j4m/d/`j4m-gethead $DOC $3`
+    diff .mtl/d/`mtl-gethead $DOC $2` .mtl/d/`mtl-gethead $DOC $3`
 elif [ $# -eq 2 ]; then
     DOC=$(getdoc $1)
-    diff .j4m/${DOC} .j4m/d/`j4m-gethead $DOC $2`
+    diff .mtl/${DOC} .mtl/d/`mtl-gethead $DOC $2`
 elif [ $# -eq 1 ]; then
     DOC=$(getdoc $1)
-    diff .j4m/${DOC} .j4m/d/`j4m-gethead $DOC`
+    diff .mtl/${DOC} .mtl/d/`mtl-gethead $DOC`
 else
     showUsage
 fi

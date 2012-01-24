@@ -1,5 +1,5 @@
 #!/bin/bash
-. j4m-funcs
+. mtl-funcs
 
 showUsage() {
     cat <<EOF
@@ -11,7 +11,7 @@ EOF
 
 if [ $# -eq 1 ]; then
     DOC=$(getdoc $1)
-    tail -n 1 .j4m/${DOC}.index | awk -F'\t' '{ print ".j4m/d/" $1 }' | xargs cat
+    tail -n 1 .mtl/${DOC}.index | awk -F'\t' '{ print ".mtl/d/" $1 }' | xargs cat
 else
     showUsage
 fi

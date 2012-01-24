@@ -1,16 +1,16 @@
 #!/bin/bash
-. j4m-funcs
+. mtl-funcs
 
 showUsage() {
     cat <<EOF
 Usage: 
-log doc ~ shows log of doc
+link doc ~ links doc in .mtl to the current dir
 EOF
 }
 
 if [ $# -eq 1 ]; then
     DOC=$(getdoc $1)
-    cat .j4m/${DOC}.index | awk -F'\t' '{ print "" $3 "\t" $4 "\t" $5 }'
+    ln -s .mtl/${DOC} ./${DOC}
 else
     showUsage
 fi

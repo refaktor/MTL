@@ -1,0 +1,5 @@
+#!/bin/bash
+
+sum1=`md5sum .mtl/$1 | awk '{print $1}'`
+echo $sum1
+cp .mtl/$1 .mtl/d/${sum1}

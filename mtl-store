@@ -1,5 +1,5 @@
 #!/bin/bash
-. j4m-funcs
+. mtl-funcs
 
 showUsage() {
     cat <<EOF
@@ -10,10 +10,10 @@ EOF
 
 if [ $# -eq 1 ]; then
     DOC=$(getdoc $1)
-    hash=`j4m-toblob $DOC`
+    hash=`mtl-toblob $DOC`
     UN="$USER@$HOSTNAME"
-    j4m-toindex $DOC "$hash" `cat .j4m/${DOC}.src` "$UN" "$2"
-    echo "$hash" | cat > .j4m/$DOC.src
+    mtl-toindex $DOC "$hash" `cat .mtl/${DOC}.src` "$UN" "$2"
+    echo "$hash" | cat > .mtl/$DOC.src
 else
     showUsage
 fi

@@ -6,7 +6,7 @@ showCommands() {
 if [ $# -gt 0 ]; then
     CMD=$1
     shift
-    j4m-$CMD $@
+    mtl-$CMD $@
 else
     showCommands
 fi

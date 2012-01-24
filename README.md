@@ -1,4 +1,4 @@
-#J4M
+#mtl
 
 **!!!THIS IS HEAVILY WORK IN PROGRESS!!!**
 
@@ -18,49 +18,49 @@ usable so we can start using as soon as possible (and then develop further).
 Things will of course get streamlined and automated as much as it makes sense. This is heavily WIP!
 
 	  # cd to the dir of your project and start
-	  j4m init   	    	#creates the .j4m dir structure
-	  j4m create work	#creates doc work in .j4m dir and index/src files
-	  j4m link work 	#creates a local symlink to the doc so you can edit it like local file
+	  mtl init   	    	#creates the .mtl dir structure
+	  mtl create work	#creates doc work in .mtl dir and index/src files
+	  mtl link work 	#creates a local symlink to the doc so you can edit it like local file
 
 	  # work on todo
 	  emacs work		#edit the file
-	  j4m store work	#store the changes again
-	  j4m diff work		#compare the working file with last stored
-	  j4m log work		#show the log of stores
-	  j4m cat work		#cat the last stored version (TODO: same numbers logic as diff and get)
+	  mtl store work	#store the changes again
+	  mtl diff work		#compare the working file with last stored
+	  mtl log work		#show the log of stores
+	  mtl cat work		#cat the last stored version (TODO: same numbers logic as diff and get)
 
 	  # previous stores
-	  j4m diff work 0	#compare working to last stored
-	  j4m diff work 0 1	#compare the last 2 stored
-	  j4m get work	  	#set working version from the last stored version
-	  j4m get work 1	#set working version from previously stored version
+	  mtl diff work 0	#compare working to last stored
+	  mtl diff work 0 1	#compare the last 2 stored
+	  mtl get work	  	#set working version from the last stored version
+	  mtl get work 1	#set working version from previously stored version
 
 	  # more docs
-	  j4m ls		#list the docs
-	  j4m extract doc	#cat extraction of doc (extract is doc without done items)
-	  j4m extract doc to doc2 	  
+	  mtl ls		#list the docs
+	  mtl extract doc	#cat extraction of doc (extract is doc without done items)
+	  mtl extract doc to doc2 	  
 
 	  # daily use
-	  j4m create :today
-	  j4m link :today
-	  j4m cat :yesterday
-	  j4m cat :tomorrow
+	  mtl create :today
+	  mtl link :today
+	  mtl cat :yesterday
+	  mtl cat :tomorrow
 
 	  #clone (from) and clone to repo (locally and remotely)
-	  j4m clone ../projectY
-	  j4m clone projectx@work.com:~/repo
-	  j4m clone to projectx@work.com:~/newrepo
+	  mtl clone ../projectY
+	  mtl clone projectx@work.com:~/repo
+	  mtl clone to projectx@work.com:~/newrepo
 
 	  #sync two repos (locally or remotely)
-	  j4m sync ../projectx/work	  	#2way sync all docs with another repo
-	  j4m sync projectx@work.com:~/work	#2way sync all docs with remote repo over ssh
+	  mtl sync ../projectx/work	  	#2way sync all docs with another repo
+	  mtl sync projectx@work.com:~/work	#2way sync all docs with remote repo over ssh
 
 
 ##Current plans
 
 + improve all commands, add minimal argchecking (done)
 + start using! (done)
-+ make some basic emacs mode for j4m and notes/todos dialect (done)
++ make some basic emacs mode for mtl and notes/todos dialect (done)
 - figure out how to merge and what to do on conflicts, the exact workflow and messaging
 - work on sync, merge so co-op mode will become usable!!
 - make a dialect parser for notes/todos (this will enable additional context related commands)

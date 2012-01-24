@@ -9,7 +9,7 @@ EOF
 
 ### this is just quick proof of concept version 
 
-INDEX=".j4m/${1}.index"
+INDEX=".mtl/${1}.index"
 
 if [ $# -eq 2 ]; then
     if [ ! -f $INDEX  ]; then

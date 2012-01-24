@@ -3,15 +3,15 @@
 showUsage() {
     cat <<EOF
 Usage: 
-init ~ creates .j4m 
+init ~ creates .mtl 
 EOF
 }
 
 if [ $# -eq 0 ]; then
-    if [ ! -d ".j4m" ] ; then
-	mkdir .j4m
-	mkdir .j4m/d
-	mkdir .j4m/remote
+    if [ ! -d ".mtl" ] ; then
+	mkdir .mtl
+	mkdir .mtl/d
+	mkdir .mtl/remote
     fi
 else
     showUsage

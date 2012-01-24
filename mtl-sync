@@ -13,21 +13,21 @@ EOF
 if [ $# -eq 1 ]; then
     # copy the remote index
     echo "DELETING OLD INDEXES"
-    rm .j4m/remote/*
+    rm .mtl/remote/*
     echo "COPYING INDEXES"
-    scp ${1}/.j4m/*.index .j4m/remote/.
+    scp ${1}/.mtl/*.index .mtl/remote/.
     # merge them
-    for index in .j4m/remote/*.index 
+    for index in .mtl/remote/*.index 
     do
-	DOC=`echo "$index" | sed 's/.j4m\/remote\/\([a-z0-9_-]*\)\.index/\1/'`
+	DOC=`echo "$index" | sed 's/.mtl\/remote\/\([a-z0-9_-]*\)\.index/\1/'`
 	echo "MERGING: $DOC"
-	j4m-merge $DOC $index
+	mtl-merge $DOC $index
     done
-    scp .j4m/*.index ${1}/.j4m/
+    scp .mtl/*.index ${1}/.mtl/
     # copy the blobs that arent already here, copy the missing there
     echo "RSYNCING THE BLOBS"
-    rsync -a ${1}/.j4m/d/* .j4m/d
-    rsync -a .j4m/d/* ${1}/.j4m/d    
+    rsync -a ${1}/.mtl/d/* .mtl/d
+    rsync -a .mtl/d/* ${1}/.mtl/d    
     echo "OK - DONE"
     #TODO LATER check for conflicts ... 
 else

@@ -1,6 +1,6 @@
 HOW TO MERGE
-- j4m sync
-- j4m sync doc :TODO
+- mtl sync
+- mtl sync doc :TODO
 
 WHAT HAPPENS ON CONFLICT
 

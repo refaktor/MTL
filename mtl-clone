@@ -12,14 +12,14 @@ EOF
 ### later we add a way to store remotes
 
 if [ $# -eq 1 ]; then
-	echo "cloning the j4m dir.."
-	scp -r ${1} .j4m
+	echo "cloning the mtl dir.."
+	scp -r ${1} .mtl
 	echo "DONE"
 elif [ $# -eq 2 ]; then
     if [ $1 == "to" ]; then
-	echo "cloning the j4m dir to remote location.."
+	echo "cloning the mtl dir to remote location.."
 #ls 	mkdir -p ${2}
-	scp -r .j4m ${2}/.j4m
+	scp -r .mtl ${2}/.mtl
 	echo "DONE"
     else
 	showUsage

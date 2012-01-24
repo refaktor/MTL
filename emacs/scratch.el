@@ -1,19 +1,19 @@
 ;; add this to your .emacs if you want to use it -- improve if you can!
 
-(defun j4m-command (cmd filename) (start-process "j4m" "*j4m-output*" "j4m" cmd filename))
+(defun mtl-command (cmd filename) (start-process "mtl" "*mtl-output*" "mtl" cmd filename))
 
-(defun j4m-ls () (interactive)(j4m-command "ls" ""))
-(defun j4m-log () (interactive)(j4m-command "log" (buffer-name)))
-(defun j4m-store () (interactive)(j4m-command "store" (buffer-name)))
-(defun j4m-diff () (interactive)(j4m-command "diff" (buffer-name)))
+(defun mtl-ls () (interactive)(mtl-command "ls" ""))
+(defun mtl-log () (interactive)(mtl-command "log" (buffer-name)))
+(defun mtl-store () (interactive)(mtl-command "store" (buffer-name)))
+(defun mtl-diff () (interactive)(mtl-command "diff" (buffer-name)))
 
-(provide '*j4m-output*)
+(provide '*mtl-output*)
 
 (buffer-name)
 
-(j4m-ls)
+(mtl-ls)
 
-(global-set-key "\C-xjl" 'j4m-ls)
-(global-set-key "\C-xjg" 'j4m-log)
-(global-set-key "\C-xjs" 'j4m-store)
-(global-set-key "\C-xjd" 'j4m-diff)
+(global-set-key "\C-xjl" 'mtl-ls)
+(global-set-key "\C-xjg" 'mtl-log)
+(global-set-key "\C-xjs" 'mtl-store)
+(global-set-key "\C-xjd" 'mtl-diff)
