@@ -1,0 +1,17 @@
+#!/bin/bash
+. mtl-funcs
+
+showUsage() {
+    cat <<EOF
+Usage: 
+done doc ~ extracts a document last store point (extracts all notdone stuff) primitive at this point.
+EOF
+}
+
+if [ $# -eq 1 ]; then
+    DOC=$(getdoc $1)
+    tail -n 1 .mtl/${DOC}.index | awk -F'\t' '{ print ".mtl/d/" $1 }' | xargs cat | grep -v "\-\|\~"
+else
+    showUsage
+fi
+
