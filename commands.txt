@@ -11,9 +11,10 @@ merge	      .
 sync	      .
 log	      .
 extract	      .
-clone	.	
-#mv	.	
-#rm	.	
+done	      .
+clone	      .	
+#mv	      .	
+#rm	      .	
 #internal commands
 gethead		.	
 toindex		.	
