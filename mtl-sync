@@ -26,8 +26,8 @@ if [ $# -eq 1 ]; then
     scp .mtl/*.index ${1}/.mtl/
     # copy the blobs that arent already here, copy the missing there
     echo "RSYNCING THE BLOBS"
-    rsync -a ${1}/.mtl/d/* .mtl/d
-    rsync -a .mtl/d/* ${1}/.mtl/d    
+    rsync -v -a ${1}/.mtl/d/* .mtl/d
+    rsync -v -a .mtl/d/* ${1}/.mtl/d    
     echo "OK - DONE"
     #TODO LATER check for conflicts ... 
 else
