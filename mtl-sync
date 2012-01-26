@@ -30,6 +30,34 @@ if [ $# -eq 1 ]; then
     rsync -v -a .mtl/d/* ${1}/.mtl/d    
     echo "OK - DONE"
     #TODO LATER check for conflicts ... 
+elif [ $# -eq 2 ]; then
+    # copy the remote index
+    echo "DELETING OLD INDEXES"
+    rm .mtl/remote/*
+    echo "COPYING INDEXES"
+    scp ${2}/.mtl/${1}.index .mtl/remote/.
+    # merge them
+    for index in .mtl/remote/*.index 
+    do
+	DOC=`echo "$index" | sed 's/.mtl\/remote\/\([a-z0-9_-]*\)\.index/\1/'`
+	echo "MERGING: $DOC"
+	mtl-merge $DOC $index
+    done
+    scp .mtl/${1}.index ${2}/.mtl/
+    # copy the blobs that arent already here, copy the missing there
+    echo "RSYNCING THE BLOBS"
+    for blob in `cat .mtl/${1}.index | cut -f 1 | uniq` 
+    do
+	if [ -e .mtl/d/$blob ]; then 
+	    echo "copying blob to remote: $blob"
+	    cp ${2}/.mtl/d/$blob .mtl/d/.
+	fi
+	    
+    done
+    #rsync -v -a ${1}/.mtl/d/* .mtl/d
+    #rsync -v -a .mtl/d/* ${1}/.mtl/d    
+    echo "OK - DONE"
+    #TODO LATER check for conflicts ...     
 else
     showUsage
 fi

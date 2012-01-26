@@ -2,8 +2,8 @@
 
 showUsage() {
     cat <<EOF
-Usage: 
-clone ssh://user@host.com:~/mynotes/test
+Usage: 1
+clone from ssh://user@host.com:~/mynotes/test
 clone to ssh://user@host.com:~/mynotes/test
 EOF
 }
@@ -11,15 +11,44 @@ EOF
 ### this is just quick proof of concept version 
 ### later we add a way to store remotes
 
-if [ $# -eq 1 ]; then
-	echo "cloning the mtl dir.."
-	scp -r ${1} .mtl
+if [ $# -eq 3 ]; then
+    if [ $2 == "to" ]; then
+	if [[ $3 =~ ":" ]]; then
+	    todir=/tmp/mtl/.mtl
+	else
+	    todir=${3}/.mtl
+	fi
+	echo "cloning the mtl ${1} dir to remote ($todir) location.."
+	#copy the wrk index scr files
+	mkdir -p ${todir}/d
+	echo "copying wrk index and src files"
+	cp .mtl/${1}* ${todir}/.
+	#get blobs and copy them
+	for blob in `cat .mtl/2012-01-26.index | cut -f 1 | uniq` 
+	do
+	    echo "copying blob: $blob"
+	    cp .mtl/d/$blob ${todir}/d/.
+	done
+	if [[ $3 =~ ":" ]]; then
+	    dest1=`echo $3 | cut -f 1 -d ":"`
+	    dest2=`echo $3 | cut -f 2 -d ":"`
+	    tar -C /tmp/mtl -cvzf - .mtl | ssh $dest1 "cat - | tar xvzf - -C $dest2"
+	fi
 	echo "DONE"
+    elif [ $2 == "from" ]; then
+	echo "not implemented ..."
+    else
+	showUsage
+    fi
 elif [ $# -eq 2 ]; then
     if [ $1 == "to" ]; then
 	echo "cloning the mtl dir to remote location.."
 #ls 	mkdir -p ${2}
 	scp -r .mtl ${2}/.mtl
+	echo "DONE"
+    elif [ $1 == "from" ]; then
+	echo "cloning the mtl dir.."
+	scp -r ${1} .mtl
 	echo "DONE"
     else
 	showUsage
