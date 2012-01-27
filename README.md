@@ -12,6 +12,33 @@ On top of it a parser will be built based on ideas from http://www.qwikitodo.com
 We are making the basic backend work. On a proof of concept level we prooved it can work OK, so we are making it 
 usable so we can start using as soon as possible (and then develop further). 
 
+##Few sample workflows
+
+My daily todos:
+
+      #check out what we did yesterday
+      cd ~
+      mtl done :yday
+      mtl extract :yday
+
+      #ectract not done stuff to todays todo
+      mtl extract :yday to :today
+      mtl link :today
+      emacs 2012-01-27
+
+Few todos for some project, shared w/ another person:
+
+     #go to directory of the project
+     cd Work/ProjectSome
+     #check out which todos we have
+     mtl ls
+     mtl cat code
+     mtl cat design | less
+
+     #edit the desing todo then sync it with central repo (that designer uses too)
+     emacs design
+     sync design with repo@someserv.com:~/ProjectSome
+
 
 ##Current commands
 
@@ -39,6 +66,7 @@ Things will of course get streamlined and automated as much as it makes sense. T
 	  mtl ls		#list the docs
 	  mtl extract doc	#cat extraction of doc (extract is doc without done items)
 	  mtl extract doc to doc2 	  
+	  mtl done doc	     	#see the done things in some doc
 
 	  # daily use
 	  mtl create :today
@@ -47,14 +75,16 @@ Things will of course get streamlined and automated as much as it makes sense. T
 	  mtl cat :tomorrow
 
 	  #clone (from) and clone to repo (locally and remotely)
-	  mtl clone ../projectY
-	  mtl clone projectx@work.com:~/repo
+	  mtl clone from ../projectY				# clone whole repo (all docs)
+	  mtl clone from projectx@work.com:~/repo		
 	  mtl clone to projectx@work.com:~/newrepo
+	  mtl clone doc to repo@someserv.com:~/myrepodoc	# clone specific document to some repo
 
 	  #sync two repos (locally or remotely)
-	  mtl sync ../projectx/work	  	#2way sync all docs with another repo
-	  mtl sync projectx@work.com:~/work	#2way sync all docs with remote repo over ssh
-
+	  mtl sync ../projectx/work				#2way sync all docs with another repo
+	  mtl sync projectx@work.com:~/work			#2way sync all docs with remote repo over ssh
+	  mtl sync designtodo projectx@host.com:~/projectxcoop  #sync specific doc to the remote repo
+	  
 
 ##Current plans
 
