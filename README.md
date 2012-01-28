@@ -1,4 +1,4 @@
-mtl
+#mtl
 
 **!!!THIS IS HEAVILY WORK IN PROGRESS!!!**
 
@@ -129,17 +129,6 @@ Things will of course get streamlined and automated as much as it makes sense. T
 	  mtl sync projectx@work.com:~/work			#2way sync all docs with remote repo over ssh
 	  mtl sync designtodo projectx@host.com:~/projectxcoop  #sync specific doc to the remote repo
 	  
-
-##Current plans
-
-+ improve all commands, add minimal argchecking (done)
-+ start using! (done)
-+ make some basic emacs mode for mtl and notes/todos dialect (done)
-- figure out how to merge and what to do on conflicts, the exact workflow and messaging
-- work on sync, merge so co-op mode will become usable!!
-- make a dialect parser for notes/todos (this will enable additional context related commands)
-- think how to streamline/automate commands
-- make tests!!
 
 ##Platforms
 
