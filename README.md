@@ -14,39 +14,69 @@ usable so we can start using as soon as possible (and then develop further).
 
 ##Few sample workflows
 
-My daily todos:
+###Personal daily todos
 
-      #check out what we did yesterday
+We have one personal todo per day in our home folder. Each day we create new one from what was left undone
+from day before (and from planned things for immediate future "~").
+
+      #check out what we did and didn't do yesterday
       cd ~
       mtl cat done :yday
       mtl cat todo :yday
 
-      #ectract not done stuff to todays todo
+      #extract undone stuff to today's todo
       mtl cat todo :yday to :today
       mtl link :today
       emacs 2012-01-27
 
-Few todos for some project, shared w/ another person:
+      #during the day: edit the todo and store it
+      mtl store :today
+      
+
+###Multiple todos for a project
+
+We have multiple continious todos for ProjectZ.
 
      #go to directory of the project
-     cd Work/ProjectSome
+     cd Work/ProjectZ
      #check out which todos we have
-     mtl ls
+     mtl ls			#shows code and design todos
      mtl cat code
      mtl cat design | less
 
-     #edit the desing todo then sync it with central repo (that designer uses too)
-     emacs design
-     sync design with repo@someserv.com:~/ProjectSome
+     mtl cat design urgent	#is there anything urgent in design todo?	
+     mtl log code   		#see the history of code todo
+
+     #start working on code : store between changes
+     emacs code
+     mtl store code
+
+###Cooperating on a todo
+
+We create a todo clone it to some remote, shared location (over ssh).
+
+   mtl clone design to coop@projectA.com:~/designtodo
+
+Designer can clone whole repo from the location.
+
+	 mtl clone from coop@projectA.com:~/designtodo
+
+You both work on the todo, store it and sync it.
+
+    mtl sync design coop@projectA.com:~/designtodo
+
+
+###Looking into the past
 
 File versioning, how to access past versions:
 
-     #done
+     mtl log :today    	       #see the history
+
      mtl cat :today~1
      mtl cat :today~2 done
      mtl cat :today~2 to :tomorrow
      
-     #todo
+     #(to be done)
      mtl diff :today~~5
      mtl diff :today~3~5
 
