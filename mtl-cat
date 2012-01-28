@@ -21,15 +21,31 @@ if [ $# -gt 0 ]; then
     
     CMD="cat .mtl/d/$BLOB"
     shift
-    if [ $# -gt 0 ]; then
+    if [ $# -gt 0 ]; then # many of these should improve by real parser or just better greps + awk for cleaning titles
 	if [ $1 == "todo" ]; then
-	    CMD="$CMD | grep -v '^+'"
+	    CMD="$CMD | grep -v '^+\|^\*'"
 	    shift
 	elif [ $1 == "done" ]; then
 	    CMD="$CMD | grep -v '^\-\|^\~\|^\*'"
 	    shift
 	elif [ $1 == "notes" ]; then
 	    CMD="$CMD | grep -v '^\-\|^\~\|^\+'"
+	    shift
+	elif [ $1 == "urgent" ]; then
+	    CMD="$CMD | grep '!!'"
+	    shift
+	elif [ $1 == "tags" ]; then
+	    CMD="$CMD | grep '\:'"
+	    shift
+	elif [ $1 == "peers" ]; then
+	    CMD="$CMD | grep '@'"
+	    shift
+	elif [ $1 == "clients" ]; then
+	    CMD="$CMD | grep '\$'" #todo doesn't work
+	    shift
+	elif [ $1 == "find" ]; then
+	    CMD="$CMD | grep '$2'"
+	    shift
 	    shift
 	fi
     fi
@@ -42,7 +58,7 @@ if [ $# -gt 0 ]; then
     if [ "$CMD" == "" ]; then 
 	showUsage
     else
-	echo "$CMD"
+	#echo "$CMD"
 	eval "$CMD"
     fi
 else
