@@ -51,7 +51,7 @@ if [ $# -gt 0 ]; then
 	    fi
 	fi
 	if [ $# -gt 1 ] && [ "$1" == "to" ]; then
-	    DOC2=$(resolvedoc $2)
+	    DOC2=$(getdoc $2)
 	    echo "$DOC --> $DOC2"
 	    CMD="$CMD > .mtl/${DOC2}"
 	    echo "$BLOB" > .mtl/${DOC2}.src

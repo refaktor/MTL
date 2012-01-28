@@ -32,7 +32,7 @@ getblob(){
     LINE=1
     DOC=$(getdocname $1)          #`echo "$1~" | cut -d"~" -f1`
     REV=$(getrev $1 $2)           #`echo "$1~" | cut -d"~" -f${FIELD}`
-    if [[ $REV =~ [0-9] ]]; then
+    if [[ $REV == "" ]] || [[ $REV =~ [0-9] ]]; then
 	if [ -f .mtl/${DOC}.index ]; then 
 	    let "LINE= $REV + 1"	    
 	    tail -n $LINE .mtl/${DOC}.index | head -n 1 | awk '{ print $1 }'   
