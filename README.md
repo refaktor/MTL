@@ -1,4 +1,4 @@
-#mtl
+mtl
 
 **!!!THIS IS HEAVILY WORK IN PROGRESS!!!**
 
@@ -19,7 +19,7 @@ My daily todos:
       #check out what we did yesterday
       cd ~
       mtl cat done :yday
-      mtl cat tood :yday
+      mtl cat todo :yday
 
       #ectract not done stuff to todays todo
       mtl cat todo :yday to :today
