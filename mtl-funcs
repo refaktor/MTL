@@ -1,7 +1,11 @@
 #!/bin/bash
 
+getdocname(){
+    echo "$1~" | cut -d"~" -f1
+}
+
 getdoc(){
-    echo $1 | cut -d"~" -f1
+    echo $(resolvedoc $(getdocname $1) )
 }
 
 resolvedoc(){
@@ -38,4 +42,8 @@ getblob(){
     
 }
 
-#getblob 2002-1-1~1 1
+#echo $(getblob 2012-01-25~1 1)
+#echo $(getdocname 2012-01-25~1)
+#echo $(resolvedoc :today)
+#echo $(getdoc :today~1~1)
+#echo $(getdocname 2012-01-25~1)
