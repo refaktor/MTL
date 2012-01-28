@@ -1,6 +1,10 @@
 #!/bin/bash
 
 getdoc(){
+    echo $1 | cut -d"~" -f1
+}
+
+resolvedoc(){
     VAL=$1
     if [ "$1" == ":today" ]; then
 	VAL=`date --rfc-3339=date`
@@ -12,3 +16,26 @@ getdoc(){
     echo "$VAL"
 }
 
+getblob(){
+    # getblob doc~1~3 1
+    if [ $2 -eq 1 ] || [ $2 -eq 2 ]; then
+	LINE=1
+	let "FIELD=$2 + 1"
+#	echo $1
+	DOC=`echo "$1~" | cut -d"~" -f1`
+	REV=`echo "$1~" | cut -d"~" -f${FIELD}`
+#	echo $REV
+	if [[ $REV =~ [0-9] ]]; then 
+#	    echo "INSIDE"
+	    let "LINE= $REV + 1"	    
+	fi
+#	echo "OUTSIDE"
+#	echo $LINE
+	tail -n $LINE .mtl/${DOC}.index | head -n 1 | awk '{ print $1 }'   
+    else
+	echo ""
+    fi
+    
+}
+
+#getblob 2002-1-1~1 1

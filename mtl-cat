@@ -5,14 +5,46 @@ showUsage() {
     cat <<EOF
 Usage: 
 cat doc ~ cats a document last store point
-cat doc 1 ~ cats a document's previous point :todo
+cat doc done
+cat doc todo
+cat doc to doc2
+cat doc done to doc2
+cat doc todo to doc2
+cat doc:1 todo to doc2
 EOF
 }
 
-if [ $# -eq 1 ]; then
-    DOC=$(getdoc $1)
-    tail -n 1 .mtl/${DOC}.index | awk -F'\t' '{ print ".mtl/d/" $1 }' | xargs cat
+if [ $# -gt 0 ]; then
+    DOCNM=$(resolvedoc $1)
+    DOC=$(getdoc $DOCNM)
+    BLOB=$(getblob "$DOCNM" 1)
+    
+    CMD="cat .mtl/d/$BLOB"
+    shift
+    if [ $# -gt 0 ]; then
+	if [ $1 == "todo" ]; then
+	    CMD="$CMD | grep -v '^+'"
+	    shift
+	elif [ $1 == "done" ]; then
+	    CMD="$CMD | grep -v '^\-\|^\~\|^\*'"
+	    shift
+	elif [ $1 == "notes" ]; then
+	    CMD="$CMD | grep -v '^\-\|^\~\|^\+'"
+	    shift
+	fi
+    fi
+    if [ $# -gt 1 ] && [ "$1" == "to" ]; then
+	DOC2=$(getdoc $2)
+	echo "$DOC1 to $DOC2"
+	CMD="$CMD > .mtl/${DOC2}"
+    fi
+    
+    if [ "$CMD" == "" ]; then 
+	showUsage
+    else
+	echo "$CMD"
+	eval "$CMD"
+    fi
 else
     showUsage
 fi
-

@@ -4,8 +4,8 @@ showUsage() {
     cat <<EOF
 Usage: 
 gethead doc ~ compares working to head
-gethead doc 1 ~ compares working to 1 version back
-gethead doc 0 1 ~ compares last stored version to 1 back
+gethead doc:1 ~ compares working to 1 version back
+gethead doc:0;1 ~ compares last stored version to 1 back
 EOF
 }
 

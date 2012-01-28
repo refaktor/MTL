@@ -18,11 +18,11 @@ My daily todos:
 
       #check out what we did yesterday
       cd ~
-      mtl done :yday
-      mtl extract :yday
+      mtl cat done :yday
+      mtl cat tood :yday
 
       #ectract not done stuff to todays todo
-      mtl extract :yday to :today
+      mtl cat todo :yday to :today
       mtl link :today
       emacs 2012-01-27
 
@@ -38,6 +38,19 @@ Few todos for some project, shared w/ another person:
      #edit the desing todo then sync it with central repo (that designer uses too)
      emacs design
      sync design with repo@someserv.com:~/ProjectSome
+
+File versioning, how to access past versions:
+
+     #done
+     mtl cat :today~1
+     mtl cat :today~2 done
+     mtl cat :today~2 to :tomorrow
+     
+     #todo
+     mtl diff :today~~5
+     mtl diff :today~3~5
+
+     mtl get :today~2
 
 
 ##Current commands
@@ -64,9 +77,10 @@ Things will of course get streamlined and automated as much as it makes sense. T
 
 	  # more docs
 	  mtl ls		#list the docs
-	  mtl extract doc	#cat extraction of doc (extract is doc without done items)
-	  mtl extract doc to doc2 	  
-	  mtl done doc	     	#see the done things in some doc
+	  mtl cat todo doc	#cat extraction of doc (extract is doc without done items)
+	  mtl cat todo doc to doc2 	#extract todo items from yesterday to today
+	  mtl cat notes doc	     	#see the notes in some doc
+	  mtl cat done doc	     	#see the done things in some doc
 
 	  # daily use
 	  mtl create :today
