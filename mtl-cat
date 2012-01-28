@@ -19,48 +19,52 @@ if [ $# -gt 0 ]; then
     DOC=$(getdocname $DOCNM)
     BLOB=$(getblob "$DOCNM" 1)
     
-    CMD="cat .mtl/d/$BLOB"
-    shift
-    if [ $# -gt 0 ]; then # many of these should improve by real parser or just better greps + awk for cleaning titles
-	if [ $1 == "todo" ]; then
-	    CMD="$CMD | grep -v '^+\|^\*'"
-	    shift
-	elif [ $1 == "done" ]; then
-	    CMD="$CMD | grep -v '^\-\|^\~\|^\*'"
-	    shift
-	elif [ $1 == "notes" ]; then
-	    CMD="$CMD | grep -v '^\-\|^\~\|^\+'"
-	    shift
-	elif [ $1 == "urgent" ]; then
-	    CMD="$CMD | grep '!!'"
-	    shift
-	elif [ $1 == "tags" ]; then
-	    CMD="$CMD | grep '\:'"
-	    shift
-	elif [ $1 == "peers" ]; then
-	    CMD="$CMD | grep '@'"
-	    shift
-	elif [ $1 == "clients" ]; then
-	    CMD="$CMD | grep '\$'" #todo doesn't work
-	    shift
-	elif [ $1 == "find" ]; then
-	    CMD="$CMD | grep '$2'"
-	    shift
-	    shift
+    if [[ $BLOB != "" ]]; then
+	CMD="cat .mtl/d/$BLOB"
+	shift
+	if [ $# -gt 0 ]; then # many of these should improve by real parser or just better greps + awk for cleaning titles
+	    if [ $1 == "todo" ]; then
+		CMD="$CMD | grep -v '^+\|^\*'"
+		shift
+	    elif [ $1 == "done" ]; then
+		CMD="$CMD | grep -v '^\-\|^\~\|^\*'"
+		shift
+	    elif [ $1 == "notes" ]; then
+		CMD="$CMD | grep -v '^\-\|^\~\|^\+'"
+		shift
+	    elif [ $1 == "urgent" ]; then
+		CMD="$CMD | grep '!!'"
+		shift
+	    elif [ $1 == "tags" ]; then
+		CMD="$CMD | grep '\:'"
+		shift
+	    elif [ $1 == "peers" ]; then
+		CMD="$CMD | grep '@'"
+		shift
+	    elif [ $1 == "clients" ]; then
+		CMD="$CMD | grep '\$'" #todo doesn't work
+		shift
+	    elif [ $1 == "find" ]; then
+		CMD="$CMD | grep '$2'"
+		shift
+		shift
+	    fi
 	fi
-    fi
-    if [ $# -gt 1 ] && [ "$1" == "to" ]; then
-	DOC2=$(resolvedoc $2)
-	echo "$DOC --> $DOC2"
-	CMD="$CMD > .mtl/${DOC2}"
-	echo "$BLOB" > .mtl/${DOC2}.src
-    fi
-    
-    if [ "$CMD" == "" ]; then 
-	showUsage
-    else
+	if [ $# -gt 1 ] && [ "$1" == "to" ]; then
+	    DOC2=$(resolvedoc $2)
+	    echo "$DOC --> $DOC2"
+	    CMD="$CMD > .mtl/${DOC2}"
+	    echo "$BLOB" > .mtl/${DOC2}.src
+	fi
+	
+	if [ "$CMD" == "" ]; then 
+	    showUsage
+	else
 	#echo "$CMD"
-	eval "$CMD"
+	    eval "$CMD"
+	fi
+    else
+	echo "err: no index file, try the ~w option"
     fi
 else
     showUsage

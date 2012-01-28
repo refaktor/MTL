@@ -1,49 +1,51 @@
 #!/bin/bash
 
 getdocname(){
-    echo "$1~" | cut -d"~" -f1
+    echo "$1~" | cut -d "~" -f 1
+}
+
+getrev(){
+    let "FIELD=$2 + 1"
+    echo "$1~" | cut -d "~" -f ${FIELD}
 }
 
 getdoc(){
-    echo $(resolvedoc $(getdocname $1) )
+    echo $(getdocname $(resolvedoc $1) )
 }
 
 resolvedoc(){
-    VAL=$1
-    if [ "$1" == ":today" ]; then
-	VAL=`date --rfc-3339=date`
-    elif [ "$1" == ":yesterday" ] || [ "$1" == ":yday" ];  then
-	VAL=`date --rfc-3339=date -d yesterday`    
-    elif [ "$1" == ":tomorrow" ]; then
-	VAL=`date --rfc-3339=date -d tomorrow`
+    DOC=$(getdocname $1)
+    REV1=$(getrev $1 1)
+    REV2=$(getrev $1 2)
+
+    if [ "$DOC" == ":today" ]; then
+	DOC=`date --rfc-3339=date`
+    elif [ "$DOC" == ":yesterday" ] || [ "$1" == ":yday" ]; then
+	DOC=`date --rfc-3339=date -d yesterday`    
+    elif [ "$DOC" == ":tomorrow" ]; then
+	DOC=`date --rfc-3339=date -d tomorrow`
     fi    
-    echo "$VAL"
+    echo "$DOC~$REV1~$REV2"
 }
 
 getblob(){
-    # getblob doc~1~3 1
-    if [ $2 -eq 1 ] || [ $2 -eq 2 ]; then
-	LINE=1
-	let "FIELD=$2 + 1"
-#	echo $1
-	DOC=`echo "$1~" | cut -d"~" -f1`
-	REV=`echo "$1~" | cut -d"~" -f${FIELD}`
-#	echo $REV
-	if [[ $REV =~ [0-9] ]]; then 
-#	    echo "INSIDE"
+    LINE=1
+    DOC=$(getdocname $1)          #`echo "$1~" | cut -d"~" -f1`
+    REV=$(getrev $1 $2)           #`echo "$1~" | cut -d"~" -f${FIELD}`
+    if [[ $REV =~ [0-9] ]]; then
+	if [ -f .mtl/${DOC}.index ]; then 
 	    let "LINE= $REV + 1"	    
+	    tail -n $LINE .mtl/${DOC}.index | head -n 1 | awk '{ print $1 }'   
 	fi
-#	echo "OUTSIDE"
-#	echo $LINE
-	tail -n $LINE .mtl/${DOC}.index | head -n 1 | awk '{ print $1 }'   
-    else
-	echo ""
+    elif [[ $REV == "w" ]]; then
+	echo "../${DOC}"
     fi
-    
 }
 
 #echo $(getblob 2012-01-25~1 1)
 #echo $(getdocname 2012-01-25~1)
 #echo $(resolvedoc :today)
+#echo $(resolvedoc :today~1~2)
+#echo $(resolvedoc :today~w)
 #echo $(getdoc :today~1~1)
 #echo $(getdocname 2012-01-25~1)
