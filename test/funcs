@@ -1,0 +1,27 @@
+#!/bin/bash
+. ../mtl-funcs
+
+#todo make some simple testing function
+
+testit() {
+    if [[ $(eval $2) == $3 ]]; then
+	echo "+++ $1 passed"
+	echo ""
+    else
+	echo "!!! $1 failed"
+	echo " expected:"
+	echo "$3"
+	echo " got:"
+	echo $(eval $2)
+	echo ""
+    fi
+}
+
+
+testit "1" "getblob 2012-01-25~1 1" ""
+testit "2" "getdocname 2012-01-25~1" "2012-01-25"
+testit "3" "resolvedoc :today" "2012-01-28~~"
+testit "4" "resolvedoc :today~1~2" "2012-01-28~1~2"
+testit "5" "resolvedoc :today~w" "2012-01-28~w~"
+testit "6" "getdoc :today~1~1" "2012-01-28"
+testit "7" "getdocname 2012-01-25~1" "2012-01-25"

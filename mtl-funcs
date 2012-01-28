@@ -41,11 +41,3 @@ getblob(){
 	echo "../${DOC}"
     fi
 }
-
-#echo $(getblob 2012-01-25~1 1)
-#echo $(getdocname 2012-01-25~1)
-#echo $(resolvedoc :today)
-#echo $(resolvedoc :today~1~2)
-#echo $(resolvedoc :today~w)
-#echo $(getdoc :today~1~1)
-#echo $(getdocname 2012-01-25~1)
