@@ -37,12 +37,9 @@ from day before (and from planned things for immediate future "~").
 We have one personal todo per day in our home folder. Each day we create new one from what was left undone
 from day before (and from planned things for immediate future "~").
 
-      #check out what we did and didn't do yesterday
       cd ~
       mtl extract :yday to :today 
-      #does cat todo, store and link
-      mtl extract :yday to :today unlink
-      #does cat todo, store :today, link :today and unlink :yday
+      #does cat todo, store :today, link :today (if you add unlink it unlinks :yday)
 
 ###Multiple todos for a project
 
