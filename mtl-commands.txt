@@ -14,6 +14,7 @@ extract	      .
 done	      .
 clone	      .	
 rm	      .	
+unlink	      .
 #mv	      .	
 #rm	      .	
 #internal commands

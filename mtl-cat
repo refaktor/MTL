@@ -24,7 +24,10 @@ if [ $# -gt 0 ]; then
 	shift
 	if [ $# -gt 0 ]; then # many of these should improve by real parser or just better greps + awk for cleaning titles
 	    if [ $1 == "todo" ]; then
-		CMD="$CMD | grep -v '^+\|^\*'"
+		CMD="$CMD | grep -v '^+\|^\*\|^\^\|^¨'"
+		shift
+	    elif [ $1 == "todonow" ]; then
+		CMD="$CMD | grep -v '^\~\|^+\|^\*\|^\^\|^¨'"
 		shift
 	    elif [ $1 == "done" ]; then
 		CMD="$CMD | grep -v '^\-\|^\~\|^\*'"

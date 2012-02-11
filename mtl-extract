@@ -1,0 +1,21 @@
+#!/bin/bash
+. mtl-funcs
+
+showUsage() {
+    cat <<EOF
+Usage: 
+extract doc to doc2
+extract :yday to :today
+EOF
+}
+
+if [ $# -gt 2 ] && [[ "$2" == "to" ]]; then
+    mtl-cat $1 todo to $3
+    mtl-store $3
+    mtl-link $3
+    if [[ "$4" == "unlink" ]]; then 
+	mtl-unlink $1
+    fi
+else
+    showUsage
+fi

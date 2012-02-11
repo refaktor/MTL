@@ -26,12 +26,23 @@ from day before (and from planned things for immediate future "~").
 
       #extract undone stuff to today's todo
       mtl cat todo :yday to :today
+      mtl store :today
       mtl link :today
       emacs 2012-01-27
 
       #during the day: edit the todo and store it
-      mtl store :today
-      
+
+###Personal daily todos shortcut
+
+We have one personal todo per day in our home folder. Each day we create new one from what was left undone
+from day before (and from planned things for immediate future "~").
+
+      #check out what we did and didn't do yesterday
+      cd ~
+      mtl extract :yday to :today 
+      #does cat todo, store and link
+      mtl extract :yday to :today unlink
+      #does cat todo, store :today, link :today and unlink :yday
 
 ###Multiple todos for a project
 
