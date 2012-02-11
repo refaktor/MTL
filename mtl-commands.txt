@@ -1,24 +1,28 @@
-#THIS IS JUST WIP LIST TO TEST INSTALLER
+#
+#These are the commands available
+#
 init	      initializes the .mtl dir in current path
-create	      creates a document
+create	      creates a doc
+ls	      lists docs
 store	      stores changes to index
-get	      ..
-cat	      ..
-diff	      ..
-ls	      .
-link	      .
-merge	      .
-sync	      .
-log	      .
-extract	      .
-done	      .
-clone	      .	
-rm	      .	
-unlink	      .
-#mv	      .	
-#rm	      .	
+get	      gets changes from stored to working file
+cat	      cats document (working, stored, has many aditional options)
+diff	      diffs document (working to stored, between stored)
+link	      crates a symbolic link in current dir to working doc in .mtl
+unlink	      removes symbolic link to doc
+rm	      removes a doc
+merge	      merges two indexes
+log	      displays a log of stores
+clone	      clones a repo or single doc in repo to remote location (you can sync after inital clone)
+sync	      syncs whole repos or separate docs with remote location (for colaborative work)
+extract	      shortcut to cat todo, store, link
+#
 #internal commands
-gethead		.	
-toindex		.	
+#
+gethead		gets the head blob of doc
+toindex		.
 toblob		.	
-funcs		.	
+funcs		utility functions
+#
+#!! MTL is still very heavily WIP!!
+#	
