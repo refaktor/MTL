@@ -1,0 +1,24 @@
+#!/bin/bash
+
+showUsage() {
+    cat <<EOF
+Usage: 
+cat doc mergefile
+EOF
+}
+
+### this is just quick proof of concept version 
+
+INDEX=".mtl/${1}.index"
+
+if [ $# -eq 2 ]; then
+    if [ ! -f $INDEX  ]; then
+	touch $INDEX
+	echo "new index $1"
+    fi
+    diff $INDEX $2
+#    cat $INDEX $2 | sort -u |  sort -k 3 > $INDEX
+else
+    showUsage
+fi
+

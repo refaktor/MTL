@@ -22,3 +22,9 @@ else
     showUsage
 fi
 
+#### find last common src
+cat wrk.index sepa wrk2.index | awk '
+BEGIN {first=0} 
+{if ($2=="-") { first = 1 } else { if (first) { a[x++]=$2 } else { b[$2]=y++ } } } 
+END { for (x1=x-1; x1>=0;) {  if (b[a[x1]]) { print a[x1]; break }; x1--;  } }
+'

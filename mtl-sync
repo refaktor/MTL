@@ -3,14 +3,17 @@
 showUsage() {
     cat <<EOF
 Usage: 
-sync ssh://user@host.com:~/mynotes/test
+sync doc ssh://user@host.com:~/mynotes/test
 EOF
 }
 
 ### this is just quick proof of concept version 
 ### later we add a way to store remotes
-
+ 
 if [ $# -eq 1 ]; then
+
+    #THIS METHOD WILL GO AND BE REPLACED BY LOOP USING PER DOC SYNC METHOD BELOW
+
     # copy the remote index
     echo "DELETING OLD INDEXES"
     rm .mtl/remote/*
@@ -31,19 +34,19 @@ if [ $# -eq 1 ]; then
     echo "OK - DONE"
     #TODO LATER check for conflicts ... 
 elif [ $# -eq 2 ]; then
-    # copy the remote index
+# we sync just specific doc
+    # copy the remote index here
     echo "DELETING OLD INDEXES"
     rm .mtl/remote/*
     echo "COPYING INDEXES"
     scp ${2}/.mtl/${1}.index .mtl/remote/.
-    # merge them
-    for index in .mtl/remote/*.index 
-    do
-	DOC=`echo "$index" | sed 's/.mtl\/remote\/\([a-z0-9_-]*\)\.index/\1/'`
-	echo "MERGING: $DOC"
-	mtl-merge $DOC $index
-    done
-    scp .mtl/${1}.index ${2}/.mtl/
+    # merge the indexes    for index in .mtl/remote/*.index 
+#    do
+#	DOC=`echo "$index" | sed 's/.mtl\/remote\/\([a-z0-9_-]*\)\.index/\1/'`
+#	echo "MERGING: $DOC"
+#	mtl-merge $DOC $index
+#    done
+    #scp .mtl/${1}.index ${2}/.mtl/
     # copy the blobs that arent already here, copy the missing there
     echo "RESYNCING THE BLOBS"
     for blob in `comm -13 <(cat .mtl/${1}.index | cut -f 1 | uniq | sort) <(cat .mtl/remote/${1}.index | cut -f 1 | uniq | sort)` 
@@ -56,11 +59,33 @@ elif [ $# -eq 2 ]; then
 	echo "copying blob to remote: $blob"
 	scp .mtl/d/$blob ${2}/.mtl/d/.
     done
-    #rsync -v -a ${1}/.mtl/d/* .mtl/d
-    #rsync -v -a .mtl/d/* ${1}/.mtl/d    
+
+    #do a 3way diff to merge the files
+
+    echo "-" | cat > .mtl/sepa
+
+    #### find last common src
+    OLDBL=`cat .mtl/${1}.index .mtl/sepa .mtl/remote/${1}.index | awk '
+		BEGIN {first=0} 
+		{if ($1=="-") { first = 1 } else { if (first) { a[x++]=$2 } else { b[$2]=y++ } } } 
+		END { for (x1=x-1; x1>=0;) { if (b[a[x1]]) { print a[x1]; break }; x1--;  } }'`
+
+    MYBL=`tail -n 1 .mtl/${1}.index | cut -f 1`
+    THEIRBL=`tail -n 1 .mtl/remote/${1}.index | cut -f 1`
+
+    echo "merging MY: $MYBL OLD: $OLDBL THEIR: $THEIRBL"
+
+    echo "diff3 -m .mtl/d/$MYBL .mtl/d/$OLDBL .mtl/d/$THEIRBL | tee .mtl/$1"
+
+    diff3 -m .mtl/d/$MYBL .mtl/d/$OLDBL .mtl/d/$THEIRBL | tee .mtl/$1
+
+
+
     echo "OK - DONE"
-    #TODO LATER check for conflicts ...     
+
 else
+
     showUsage
+
 fi
 
