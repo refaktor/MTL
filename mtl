@@ -1,6 +1,7 @@
 #!/bin/bash
 showCommands() {
-    cat commands.txt
+    echo "this is mtl, use any of subcommands"
+    cat `readlink -n -f /usr/bin/mtl`-commands.txt
 }
 
 if [ $# -gt 0 ]; then

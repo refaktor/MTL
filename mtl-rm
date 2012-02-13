@@ -1,0 +1,19 @@
+#!/bin/bash
+. mtl-funcs
+
+showUsage() {
+    cat <<EOF
+Usage: 
+store wrk "the comment" ~ stores the workign doc to index
+EOF
+}
+
+if [ $# -eq 1 ]; then
+    DOC=$(getdoc $1)
+    rm .mtl/${DOC}
+    rm .mtl/${DOC}.index
+    rm .mtl/${DOC}.src
+else
+    showUsage
+fi
+

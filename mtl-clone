@@ -24,7 +24,7 @@ if [ $# -eq 3 ]; then
 	echo "copying wrk index and src files"
 	cp .mtl/${1}* ${todir}/.
 	#get blobs and copy them
-	for blob in `cat .mtl/2012-01-26.index | cut -f 1 | uniq` 
+	for blob in `cat .mtl/${1}.index | cut -f 1 | uniq` 
 	do
 	    echo "copying blob: $blob"
 	    cp .mtl/d/$blob ${todir}/d/.

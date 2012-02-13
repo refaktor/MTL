@@ -6,7 +6,6 @@ showUsage() {
 Usage: 
 get doc ~ gets working to head
 get doc 1 ~ gets working to 1 version back #todo
-get doc 0 1 ~ gets last stored version to 1 back #todo
 EOF
 }
 

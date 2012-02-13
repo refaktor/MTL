@@ -1,14 +1,43 @@
 #!/bin/bash
 
-getdoc(){
-    VAL=$1
-    if [ "$1" == ":today" ]; then
-	VAL=`date --rfc-3339=date`
-    elif [ "$1" == ":yesterday" ] || [ "$1" == ":yday" ];  then
-	VAL=`date --rfc-3339=date -d yesterday`    
-    elif [ "$1" == ":tomorrow" ]; then
-	VAL=`date --rfc-3339=date -d tomorrow`
-    fi    
-    echo "$VAL"
+getdocname(){
+    echo "$1~" | cut -d "~" -f 1
 }
 
+getrev(){
+    let "FIELD=$2 + 1"
+    echo "$1~" | cut -d "~" -f ${FIELD}
+}
+
+getdoc(){
+    echo $(getdocname $(resolvedoc $1) )
+}
+
+resolvedoc(){
+    DOC=$(getdocname $1)
+    REV1=$(getrev $1 1)
+    REV2=$(getrev $1 2)
+
+    if [ "$DOC" == ":today" ]; then
+	DOC=`date --rfc-3339=date`
+    elif [ "$DOC" == ":yesterday" ] || [ "$1" == ":yday" ]; then
+	DOC=`date --rfc-3339=date -d yesterday`    
+    elif [ "$DOC" == ":tomorrow" ]; then
+	DOC=`date --rfc-3339=date -d tomorrow`
+    fi    
+    echo "$DOC~$REV1~$REV2"
+}
+
+getblob(){
+    LINE=1
+    DOC=$(getdocname $1)          #`echo "$1~" | cut -d"~" -f1`
+    REV=$(getrev $1 $2)           #`echo "$1~" | cut -d"~" -f${FIELD}`
+    if [[ $REV == "" ]] || [[ $REV =~ [0-9] ]]; then
+	if [ -f .mtl/${DOC}.index ]; then 
+	    let "LINE= $REV + 1"	    
+	    tail -n $LINE .mtl/${DOC}.index | head -n 1 | awk '{ print $1 }'   
+	fi
+    elif [[ $REV == "w" ]]; then
+	echo "../${DOC}"
+    fi
+}

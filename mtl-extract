@@ -4,23 +4,18 @@
 showUsage() {
     cat <<EOF
 Usage: 
-extract doc ~ extracts a document last store point (extracts all notdone stuff) primitive at this point.
-extract doc to doc2 ~ extracts a document last store point (extracts all notdone stuff) primitive at this point.
+extract doc to doc2
+extract :yday to :today
 EOF
 }
 
-if [ $# -eq 1 ]; then
-    DOC=$(getdoc $1)
-    tail -n 1 .mtl/${DOC}.index | awk -F'\t' '{ print ".mtl/d/" $1 }' | xargs cat | grep -v "^+"
-
-elif [ $# -eq 3 ] && [ "$2" == "to" ]; then
-    DOC1=$(getdoc $1)
-    DOC2=$(getdoc $3)
-
-    echo $DOC1
-    echo $DOC2
-    tail -n 1 .mtl/${DOC1}.index | awk -F'\t' '{ print ".mtl/d/" $1 }' | xargs cat | grep -v "^+" > .mtl/${DOC2}    
+if [ $# -gt 2 ] && [[ "$2" == "to" ]]; then
+    mtl-cat $1 todo to $3
+    mtl-store $3
+    mtl-link $3
+    if [[ "$4" == "unlink" ]]; then 
+	mtl-unlink $1
+    fi
 else
     showUsage
 fi
-

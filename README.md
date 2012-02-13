@@ -12,6 +12,84 @@ On top of it a parser will be built based on ideas from http://www.qwikitodo.com
 We are making the basic backend work. On a proof of concept level we prooved it can work OK, so we are making it 
 usable so we can start using as soon as possible (and then develop further). 
 
+##Few sample workflows
+
+###Personal daily todos
+
+We have one personal todo per day in our home folder. Each day we create new one from what was left undone
+from day before (and from planned things for immediate future "~").
+
+      #check out what we did and didn't do yesterday
+      cd ~
+      mtl cat done :yday
+      mtl cat todo :yday
+
+      #extract undone stuff to today's todo
+      mtl cat todo :yday to :today
+      mtl store :today
+      mtl link :today
+      emacs 2012-01-27
+
+      #during the day: edit the todo and store it
+
+###Personal daily todos shortcut
+
+We have one personal todo per day in our home folder. Each day we create new one from what was left undone
+from day before (and from planned things for immediate future "~").
+
+      cd ~
+      mtl extract :yday to :today 
+      #does cat todo, store :today, link :today (if you add unlink it unlinks :yday)
+
+###Multiple todos for a project
+
+We have multiple continious todos for ProjectZ.
+
+     #go to directory of the project
+     cd Work/ProjectZ
+     #check out which todos we have
+     mtl ls			#shows code and design todos
+     mtl cat code
+     mtl cat design | less
+
+     mtl cat design urgent	#is there anything urgent in design todo?	
+     mtl log code   		#see the history of code todo
+
+     #start working on code : store between changes
+     emacs code
+     mtl store code
+
+###Cooperating on a todo
+
+We create a todo clone it to some remote, shared location (over ssh).
+
+   mtl clone design to coop@projectA.com:~/designtodo
+
+Designer can clone whole repo from the location.
+
+	 mtl clone from coop@projectA.com:~/designtodo
+
+You both work on the todo, store it and sync it.
+
+    mtl sync design coop@projectA.com:~/designtodo
+
+
+###Looking into the past
+
+File versioning, how to access past versions:
+
+     mtl log :today    	       #see the history
+
+     mtl cat :today~1
+     mtl cat :today~2 done
+     mtl cat :today~2 to :tomorrow
+     
+     #(to be done)
+     mtl diff :today~~5
+     mtl diff :today~3~5
+
+     mtl get :today~2
+
 
 ##Current commands
 
@@ -37,8 +115,10 @@ Things will of course get streamlined and automated as much as it makes sense. T
 
 	  # more docs
 	  mtl ls		#list the docs
-	  mtl extract doc	#cat extraction of doc (extract is doc without done items)
-	  mtl extract doc to doc2 	  
+	  mtl cat todo doc	#cat extraction of doc (extract is doc without done items)
+	  mtl cat todo doc to doc2 	#extract todo items from yesterday to today
+	  mtl cat notes doc	     	#see the notes in some doc
+	  mtl cat done doc	     	#see the done things in some doc
 
 	  # daily use
 	  mtl create :today
@@ -47,25 +127,16 @@ Things will of course get streamlined and automated as much as it makes sense. T
 	  mtl cat :tomorrow
 
 	  #clone (from) and clone to repo (locally and remotely)
-	  mtl clone ../projectY
-	  mtl clone projectx@work.com:~/repo
+	  mtl clone from ../projectY				# clone whole repo (all docs)
+	  mtl clone from projectx@work.com:~/repo		
 	  mtl clone to projectx@work.com:~/newrepo
+	  mtl clone doc to repo@someserv.com:~/myrepodoc	# clone specific document to some repo
 
 	  #sync two repos (locally or remotely)
-	  mtl sync ../projectx/work	  	#2way sync all docs with another repo
-	  mtl sync projectx@work.com:~/work	#2way sync all docs with remote repo over ssh
-
-
-##Current plans
-
-+ improve all commands, add minimal argchecking (done)
-+ start using! (done)
-+ make some basic emacs mode for mtl and notes/todos dialect (done)
-- figure out how to merge and what to do on conflicts, the exact workflow and messaging
-- work on sync, merge so co-op mode will become usable!!
-- make a dialect parser for notes/todos (this will enable additional context related commands)
-- think how to streamline/automate commands
-- make tests!!
+	  mtl sync ../projectx/work				#2way sync all docs with another repo
+	  mtl sync projectx@work.com:~/work			#2way sync all docs with remote repo over ssh
+	  mtl sync designtodo projectx@host.com:~/projectxcoop  #sync specific doc to the remote repo
+	  
 
 ##Platforms
 

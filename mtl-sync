@@ -45,14 +45,16 @@ elif [ $# -eq 2 ]; then
     done
     scp .mtl/${1}.index ${2}/.mtl/
     # copy the blobs that arent already here, copy the missing there
-    echo "RSYNCING THE BLOBS"
-    for blob in `cat .mtl/${1}.index | cut -f 1 | uniq` 
+    echo "RESYNCING THE BLOBS"
+    for blob in `comm -13 <(cat .mtl/${1}.index | cut -f 1 | uniq | sort) <(cat .mtl/remote/${1}.index | cut -f 1 | uniq | sort)` 
     do
-	if [ -e .mtl/d/$blob ]; then 
-	    echo "copying blob to remote: $blob"
-	    cp ${2}/.mtl/d/$blob .mtl/d/.
-	fi
-	    
+	echo "copying blob from remote: $blob"
+	scp ${2}/.mtl/d/$blob .mtl/d/.
+    done
+    for blob in `comm -23 <(cat .mtl/${1}.index | cut -f 1 | uniq | sort) <(cat .mtl/remote/${1}.index | cut -f 1 | uniq | sort)` 
+    do
+	echo "copying blob to remote: $blob"
+	scp .mtl/d/$blob ${2}/.mtl/d/.
     done
     #rsync -v -a ${1}/.mtl/d/* .mtl/d
     #rsync -v -a .mtl/d/* ${1}/.mtl/d    
