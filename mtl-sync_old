@@ -7,7 +7,33 @@ sync doc ssh://user@host.com:~/mynotes/test
 EOF
 }
 
-if [ $# -eq 2 ]; then
+### this is just quick proof of concept version 
+### later we add a way to store remotes
+ 
+if [ $# -eq 1 ]; then
+
+    #THIS METHOD WILL GO AND BE REPLACED BY LOOP USING PER DOC SYNC METHOD BELOW
+
+    # copy the remote index
+    echo "DELETING OLD INDEXES"
+    rm .mtl/remote/*
+    echo "COPYING INDEXES"
+    scp ${1}/.mtl/*.index .mtl/remote/.
+    # merge them
+    for index in .mtl/remote/*.index 
+    do
+	DOC=`echo "$index" | sed 's/.mtl\/remote\/\([a-z0-9_-]*\)\.index/\1/'`
+	echo "MERGING: $DOC"
+	mtl-merge $DOC $index
+    done
+    scp .mtl/*.index ${1}/.mtl/
+    # copy the blobs that arent already here, copy the missing there
+    echo "RSYNCING THE BLOBS"
+    rsync -v -a ${1}/.mtl/d/* .mtl/d
+    rsync -v -a .mtl/d/* ${1}/.mtl/d    
+    echo "OK - DONE"
+    #TODO LATER check for conflicts ... 
+elif [ $# -eq 2 ]; then
 # we sync just specific doc
     # copy the remote index here
     echo "DELETING OLD INDEXES"
