@@ -83,7 +83,7 @@ We add new task to his todo, and clone changes to our online mirror so he will b
 
 ###Doc naming conventions
 
-:today - gets changed with date of today
+:today - gets changed with date of today (2012-02-12 - usefull for daily todos/notes)
 
 :yesterday , :yday - get exchanged with date of yesterday
 
