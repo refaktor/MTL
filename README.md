@@ -1,4 +1,4 @@
-#mtl
+#MTL
 
 **!!!THIS IS HEAVILY WORK IN PROGRESS!!!**
 
@@ -54,9 +54,10 @@ Is there anything urgent in the design todo?
      mtl log code   		#see the history of code todo
      mtl cat code todo		#see what's there to do in code
 
-Start working on code, store between changes (usually done from within emacs / vim).
-     emacs code
-     mtl store code
+Start working on code, store between changes (usually done from within emacs / 
+      
+      emacs code
+      mtl store code
 
 ###Cooperating on a todo
 
