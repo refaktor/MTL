@@ -59,42 +59,76 @@ Start working on code, store between changes (usually done from within emacs /
       emacs code
       mtl store code
 
+
 ###Cooperating on a todo
 
 From previous example. We cooperate with a designer. So let's check if he has made any changes to his todo.
 
      mtl sync design from janko@projabc.net:~/mojcas-repo
 
-The design todo merged with his changes, let's check the changes, and look at the new todo.
+The design todo merged with his changes, let's check the changes, look at the new todo and if we like it we can store it.
 
      mtl diff design
      mtl cat design
-
-We add another task to his todo, and clone changes to our online mirror so he will be able to get it (this co-op workflow is different than usual pull/push with git, each person has it's own mirror repo on some common location).
-
-   emacs design        #add another task
-   mtl clone design to janko@projabc.net:~/my-repo
+     mtl store design
 
 
+We add new task to his todo, and clone changes to our online mirror so he will be able to get it.
 
-###Looking into the past
+       emacs design        #add another task
+       mtl clone design to janko@projabc.net:~/my-repo
 
-File versioning, how to access past versions:
 
-     mtl log :today    	       #see the history
+##Commands dictionary
 
-     mtl cat :today~1
-     mtl cat :today~2 done
-     mtl cat :today~2 to :tomorrow
+###Doc naming conventions
+
+:today - gets changed with date of toda
+:yesterday , :yday - get exchanged with date of yesterday
+:tomorrow - the same
+doc~w - working version
+doc~ doc~0 - last stored version
+doc~1 , doc~N - previous, version N stores back 
+
+###log
+     mtl log doc
+
+###cat
+
+cat whole doc
+
+     mtl cat doc
+     mtl cat today
+     mtl cat today~w
+     mtl cat today~5 
+
+cat with filters
+
+     mtl cat doc done
+     mtl cat doc todo
+     mtl cat doc todonow
+     mtl cat doc urgent
+
+cat to another doc
      
-     #(to be done)
-     mtl diff :today~~5
-     mtl diff :today~3~5
+     mtl cat doc todo to doc2
+     mtl cat :yday todo to :today
 
-     mtl get :today~2
+###...more to come...
+
+##Platforms
+
+Runs on Linux and Cygwin (should work on macs too.. if you try please report).
+
+##License
+
+GNU GPL v2
 
 
-##Current commands
+
+
+
+##----PART OF OLD README -----
 
 Things will of course get streamlined and automated as much as it makes sense. This is heavily WIP!
 
@@ -140,11 +174,3 @@ Things will of course get streamlined and automated as much as it makes sense. T
 	  mtl sync projectx@work.com:~/work			#2way sync all docs with remote repo over ssh
 	  mtl sync designtodo projectx@host.com:~/projectxcoop  #sync specific doc to the remote repo
 	  
-
-##Platforms
-
-Runs on Linux and Cygwin (should work on macs too.. if you try please report).
-
-##License
-
-GNU GPL v2
