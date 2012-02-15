@@ -6,6 +6,11 @@ Simple bash/*ix based backend for notes/todo tool for my work. Inspired partiall
 
 On top of it a parser will be built based on ideas from http://www.qwikitodo.com and other prototypes I made.
 
+##Core goals / ideas
+
+- Your todos/notes should be where your work is (in the directory of your project) or if it's todo for You (generally) in your home directory
+- Your todos should give you not just direction for the future, but overview of your past
+- Your todos should work well in zone in state (for me that means no clicking around, coding them in same mindset as I code my code)
 
 ##State
 
@@ -25,7 +30,7 @@ A new day, you go to your home dir and check out what you have done yesterday, a
       mtl cat done :yesterday
       mtl cat todonow :yesterday
 
-Then you extract undone things, store the new file, link it (and because we added unlink at the end) unlink the todo of previous day:
+Then you extract undone things, store the new file, link it and (because we added unlink at the end) unlink the todo of previous day:
 
       mtl extract :yesterday to :today unlink
 
@@ -34,21 +39,21 @@ During the day you edit the daily todo, and store modifications when you wish (t
       emacs 2012-02-14
       mtl store :today
 
-###Multiple todos for a project
+###Multiple todos/docs for a project
 
-We have multiple continious todos for ProjectZ.
+We have multiple continious (not daily) todos for our project ABC. Let's go into it's directory and look at what todos are there.
 
-     #go to directory of the project
-     cd Work/ProjectZ
-     #check out which todos we have
-     mtl ls			#shows code and design todos
+     cd Work/ABC
+     mtl ls			#shows 'code' and 'design' docs
      mtl cat code
      mtl cat design | less
+
+Is there anything urgent in the design todo?
 
      mtl cat design urgent	#is there anything urgent in design todo?	
      mtl log code   		#see the history of code todo
 
-     #start working on code : store between changes
+Start working on code, store between changes (usually done from within emacs / vim).
      emacs code
      mtl store code
 
