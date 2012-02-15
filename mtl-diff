@@ -13,13 +13,13 @@ EOF
 
 if [ $# -eq 3 ]; then
     DOC=$(getdoc $1)
-    diff .mtl/d/`mtl-gethead $DOC $2` .mtl/d/`mtl-gethead $DOC $3`
+    diff -u .mtl/d/`mtl-gethead $DOC $2` .mtl/d/`mtl-gethead $DOC $3`
 elif [ $# -eq 2 ]; then
     DOC=$(getdoc $1)
-    diff .mtl/${DOC} .mtl/d/`mtl-gethead $DOC $2`
+    diff -u .mtl/${DOC} .mtl/d/`mtl-gethead $DOC $2`
 elif [ $# -eq 1 ]; then
     DOC=$(getdoc $1)
-    diff .mtl/${DOC} .mtl/d/`mtl-gethead $DOC`
+    diff -u .mtl/${DOC} .mtl/d/`mtl-gethead $DOC`
 else
     showUsage
 fi

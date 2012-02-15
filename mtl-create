@@ -12,7 +12,7 @@ if [ $# -eq 1 ]; then
     DOC=$(getdoc $1)
     touch .mtl/${DOC}
     touch .mtl/${DOC}.index
-    echo "00000000000000000000000000000000" | cat >> .mtl/${DOC}.src
+    echo "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" | cat >> .mtl/${DOC}.src
 else
     showUsage
 fi

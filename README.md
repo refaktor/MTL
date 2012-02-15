@@ -2,7 +2,7 @@
 
 **!!!THIS IS HEAVILY WORK IN PROGRESS!!!**
 
-Simple bash/*ix based backend for notes/todo tool for my work. Inspired partially by `how I imagine Git works`. 
+Simple bash/*ix based backend for notes/todo tool for my work. Inspired partially by `how I imagine Git works`, but trying to be 1 level simpler for end users (because the problem is simpler). 
 
 On top of it a parser will be built based on ideas from http://www.qwikitodo.com and other prototypes I made.
 
@@ -12,34 +12,27 @@ On top of it a parser will be built based on ideas from http://www.qwikitodo.com
 We are making the basic backend work. On a proof of concept level we prooved it can work OK, so we are making it 
 usable so we can start using as soon as possible (and then develop further). 
 
-##Few sample workflows
+##Few example workflows
 
 ###Personal daily todos
 
 We have one personal todo per day in our home folder. Each day we create new one from what was left undone
-from day before (and from planned things for immediate future "~").
+from the day before (and from planned things for immediate future "~").
 
-      #check out what we did and didn't do yesterday
+A new day, you go to your home dir and check out what you have done yesterday, and what was left undone:
+
       cd ~
-      mtl cat done :yday
-      mtl cat todo :yday
+      mtl cat done :yesterday
+      mtl cat todonow :yesterday
 
-      #extract undone stuff to today's todo
-      mtl cat todo :yday to :today
+Then you extract undone things, store the new file, link it (and because we added unlink at the end) unlink the todo of previous day:
+
+      mtl extract :yesterday to :today unlink
+
+During the day you edit the daily todo, and store modifications when you wish (there are shortucts to do it inside emacs or vim):
+      
+      emacs 2012-02-14
       mtl store :today
-      mtl link :today
-      emacs 2012-01-27
-
-      #during the day: edit the todo and store it
-
-###Personal daily todos shortcut
-
-We have one personal todo per day in our home folder. Each day we create new one from what was left undone
-from day before (and from planned things for immediate future "~").
-
-      cd ~
-      mtl extract :yday to :today 
-      #does cat todo, store :today, link :today (if you add unlink it unlinks :yday)
 
 ###Multiple todos for a project
 
