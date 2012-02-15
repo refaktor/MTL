@@ -49,7 +49,7 @@ We have multiple continious (not daily) todos for our project ABC. Let's go into
      mtl cat code
      mtl cat design | less
 
-Is there anything urgent in the design todo?
+Is there anything urgent in the design todo? Where are we with code todo?
 
      mtl cat design urgent	#is there anything urgent in design todo?	
      mtl log code   		#see the history of code todo
@@ -67,10 +67,9 @@ From previous example. We cooperate with a designer. So let's check if he has ma
 
      mtl sync design from janko@projabc.net:~/mojcas-repo
 
-The design todo merged with his changes, let's check the changes, look at the new todo and if we like it we can store it.
+The design todo merged with his changes, let's check the changes and if we like it we can store it.
 
      mtl diff design
-     mtl cat design
      mtl store design
 
 
@@ -92,7 +91,7 @@ We add new task to his todo, and clone changes to our online mirror so he will b
 
 doc~w - working version
 
-doc~ doc~0 - last stored version
+doc, doc~, doc~0 - last stored version
 
 doc~1 , doc~N - previous, version N stores back 
 
@@ -123,17 +122,6 @@ cat to another doc
 
 ###...more to come...
 
-#.
-#.
-#.
-#.
-#.
-#.
-#.
-#.
-#.
-
-
 ##Platforms
 
 Runs on Linux and Cygwin (should work on macs too.. if you try please report).
@@ -141,6 +129,16 @@ Runs on Linux and Cygwin (should work on macs too.. if you try please report).
 ##License
 
 GNU GPL v2
+
+##.
+##.
+##.
+##.
+##.
+##.
+##.
+##.
+##.
 
 
 
