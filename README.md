@@ -84,13 +84,19 @@ We add new task to his todo, and clone changes to our online mirror so he will b
 ###Doc naming conventions
 
 :today - gets changed with date of toda
+
 :yesterday , :yday - get exchanged with date of yesterday
+
 :tomorrow - the same
+
 doc~w - working version
+
 doc~ doc~0 - last stored version
+
 doc~1 , doc~N - previous, version N stores back 
 
 ###log
+
      mtl log doc
 
 ###cat
@@ -115,6 +121,17 @@ cat to another doc
      mtl cat :yday todo to :today
 
 ###...more to come...
+
+#
+#
+#
+#
+#
+#
+#
+#
+#
+
 
 ##Platforms
 
