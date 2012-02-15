@@ -10,7 +10,7 @@ On top of it a parser will be built based on ideas from http://www.qwikitodo.com
 
 - Your todos/notes should be where your work is (in the directory of your project) or if it's todo for You (generally) in your home directory
 - Your todos should give you not just direction for the future, but overview of your past
-- Your todos should work well in zone in state (for me that means no clicking around, coding them in same mindset as I code my code)
+- Your todos should work well in in-zone state of mind (for me that means no clicking around, nowysiwyg, writing them in the same environment as I code my code)
 - we *TRY* to use functional prog. principles (like immutability) and old Unix soul to gain simplicity of mechanics, implementation and workflow ;)
 
 ##State
