@@ -52,6 +52,7 @@ Is there anything urgent in the design todo?
 
      mtl cat design urgent	#is there anything urgent in design todo?	
      mtl log code   		#see the history of code todo
+     mtl cat code todo		#see what's there to do in code
 
 Start working on code, store between changes (usually done from within emacs / vim).
      emacs code
@@ -59,17 +60,20 @@ Start working on code, store between changes (usually done from within emacs / v
 
 ###Cooperating on a todo
 
-We create a todo clone it to some remote, shared location (over ssh).
+From previous example. We cooperate with a designer. So let's check if he has made any changes to his todo.
 
-   mtl clone design to coop@projectA.com:~/designtodo
+     mtl sync design from janko@projabc.net:~/mojcas-repo
 
-Designer can clone whole repo from the location.
+The design todo merged with his changes, let's check the changes, and look at the new todo.
 
-	 mtl clone from coop@projectA.com:~/designtodo
+     mtl diff design
+     mtl cat design
 
-You both work on the todo, store it and sync it.
+We add another task to his todo, and clone changes to our online mirror so he will be able to get it (this co-op workflow is different than usual pull/push with git, each person has it's own mirror repo on some common location).
 
-    mtl sync design coop@projectA.com:~/designtodo
+   emacs design        #add another task
+   mtl clone design to janko@projabc.net:~/my-repo
+
 
 
 ###Looking into the past
