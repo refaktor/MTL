@@ -3,8 +3,8 @@
 showUsage() {
     cat <<EOF
 Usage: 1
-clone from ssh://user@host.com:~/mynotes/test
-clone to ssh://user@host.com:~/mynotes/test
+copy from ssh://user@host.com:~/mynotes/test
+copy to ssh://user@host.com:~/mynotes/test
 EOF
 }
 
@@ -18,7 +18,7 @@ if [ $# -eq 3 ]; then
 	else
 	    todir=${3}/.mtl
 	fi
-	echo "cloning the mtl ${1} dir to remote ($todir) location.."
+	echo "copying the mtl ${1} dir to remote ($todir) location.."
 	#copy the wrk index scr files
 	mkdir -p ${todir}/d
 	echo "copying wrk index and src files"
@@ -42,12 +42,12 @@ if [ $# -eq 3 ]; then
     fi
 elif [ $# -eq 2 ]; then
     if [ $1 == "to" ]; then
-	echo "cloning the mtl dir to remote location.."
+	echo "copying the mtl dir to remote location.."
 #ls 	mkdir -p ${2}
 	scp -r .mtl ${2}/.mtl
 	echo "DONE"
     elif [ $1 == "from" ]; then
-	echo "cloning the mtl dir.."
+	echo "copying the mtl dir.."
 	scp -r ${1} .mtl
 	echo "DONE"
     else

@@ -13,7 +13,7 @@ unlink	      removes symbolic link to doc
 rm	      removes a doc
 merge	      merges two indexes
 log	      displays a log of stores
-clone	      clones a repo or single doc in repo to remote location (you can sync after inital clone)
+copy	      copies a repo or single doc in repo to remote location (you can sync after inital copy)
 sync	      syncs whole repos or separate docs with remote location (for colaborative work)
 extract	      shortcut to cat todo, store, link
 #

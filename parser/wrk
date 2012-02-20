@@ -1,0 +1,31 @@
+start
+  = content
+
+content
+  = title* 
+
+title
+  = type:("#"+/"+"+/"-"+/"~"+/) txt:text urg:urgent "\n"* { return { type: type.join(""), content: txt, flags: [ urg.length?"urgent":"nf" ] }  }
+
+text2
+  = "11"
+
+text
+  = "12"
+
+tag
+  = (":"[a-z]+)?
+
+word
+  = [a-zA-Z]+
+/*
+primary
+  = integer
+  / "(" additive:additive ")" { return additive; }
+
+integer "integer"
+  = digits:[0-9]+ { return parseInt(digits.join(""), 10); }*/
+
+urgent
+  = "!"*
+

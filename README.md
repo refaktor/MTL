@@ -73,10 +73,10 @@ The design todo merged with his changes, let's check the changes and if we like 
      mtl store design
 
 
-We add new task to his todo, and clone changes to our online mirror so he will be able to get it.
+We add new task to his todo, and mirror changes to our online mirror so he will be able to get it.
 
        emacs design        #add another task
-       mtl clone design to janko@projabc.net:~/my-repo
+       mtl mirror design to janko@projabc.net:~/my-repo
 
 
 ##Commands dictionary
@@ -179,11 +179,11 @@ Things will of course get streamlined and automated as much as it makes sense. T
 	  mtl cat :yesterday
 	  mtl cat :tomorrow
 
-	  #clone (from) and clone to repo (locally and remotely)
-	  mtl clone from ../projectY				# clone whole repo (all docs)
-	  mtl clone from projectx@work.com:~/repo		
-	  mtl clone to projectx@work.com:~/newrepo
-	  mtl clone doc to repo@someserv.com:~/myrepodoc	# clone specific document to some repo
+	  #copy (from) and copy to repo (locally and remotely)
+	  mtl copy from ../projectY				# copy whole repo (all docs)
+	  mtl copy from projectx@work.com:~/repo		
+	  mtl copy to projectx@work.com:~/newrepo
+	  mtl copy doc to repo@someserv.com:~/myrepodoc	# copy specific document to some repo
 
 	  #sync two repos (locally or remotely)
 	  mtl sync ../projectx/work				#2way sync all docs with another repo
