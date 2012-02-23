@@ -1,0 +1,8 @@
+start
+  = line
+
+line
+  = aba+
+
+aba
+  = "a" / "b" / " " 

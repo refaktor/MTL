@@ -1,0 +1,121 @@
+start
+  = line+
+
+line
+  = opener linecont+ "\n"*
+
+linecont
+  = word / urgent / space / special 
+
+special
+  = "[" (progress / attime) "]"
+
+progress
+  = [+-]+
+
+attime
+  = "at " [0-9]+ (":" [0-9]+ / "h")
+
+word
+  = [a-zA-Z]+
+
+space
+  = " "+
+
+opener                                                                                                                      
+  = "#"+/"+"+/"-"+/"~"+/
+
+urgent
+  = "!"+
+start
+  = line+
+
+line
+  = opener linecont+ "\n"*
+
+linecont
+  = word / urgent / space / special 
+
+special
+  = "[" (progress / attime) "]"
+
+progress
+  = [+-]+
+
+attime
+  = "at " [0-9]+ (":" [0-9]+ / "h")
+
+word
+  = [a-zA-Z]+
+
+space
+  = " "+
+
+opener                                                                                                                      
+  = "#"+/"+"+/"-"+/"~"+/
+start
+  = line+
+
+line
+  = opener linecont+ "\n"*
+
+linecont
+  = word / urgent / space / special 
+
+special
+  = "[" (progress / attime) "]"
+
+progress
+  = [+-]+
+
+attime
+  = "at " [0-9]+ (":" [0-9]+ / "h")
+
+word
+  = [a-zA-Z]+
+
+space
+  = " "+
+
+opener                                                                                                                      
+  = "#"+/"+"+/"-"+/"~"+/
+
+urgent
+  = "!"+
+
+urgent
+  = "!"+
+start
+  = line+
+
+line
+  = op1:opener lc1:linecont+ "\n"*
+  { return { type: op1, cont: lc1 } }
+
+linecont
+  = w1:word { return w1.join("") } / 
+    u1:urgent { return [ 'urgent', u1.length]  } / 
+    w1:space { return " " }/ 
+    s1:special 
+  
+
+special
+  = "[" (progress / attime) "]"
+
+progress
+  = [+-]+
+
+attime
+  = "at " [0-9]+ (":" [0-9]+ / "h")
+
+word
+  = [a-zA-Z]+
+
+space
+  = " "+
+
+opener                                                                                                                      
+  = t:"#"+/"+"+/"-"+/"~"+/
+
+urgent
+  = "!"+
