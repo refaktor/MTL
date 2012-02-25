@@ -15,6 +15,7 @@ merge	      merges two indexes
 log	      displays a log of stores
 copy	      copies a repo or single doc in repo to remote location (you can sync after inital copy)
 sync	      syncs whole repos or separate docs with remote location (for colaborative work)
+ghost	      mirrors your repo to (or from) remote location (usually just to should make sense)
 extract	      shortcut to cat todo, store, link
 #
 #internal commands

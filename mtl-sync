@@ -4,11 +4,19 @@ showUsage() {
     cat <<EOF
 Usage: 
 sync doc from ssh://user@host.com:~/mynotes/test
+sync doc from :peer
 EOF
 }
 
 if [ $# -eq 3 ]; then
     if [[ $2 == "from" ]]; then
+
+	REM="$3"
+	if [[ "$3" =~ ^: ]]; then
+	    REM=`cat .mtl/.peers | grep "^:\s" | head -n 1 | cut -f 2`
+	    echo "PEERS GHOST IS ON $REM"
+	fi
+
 # we sync just specific doc
     # copy the remote index here
 	echo "DELETING OLD TEMP INDEXES"
@@ -67,11 +75,7 @@ if [ $# -eq 3 ]; then
 	# warn about conflict and that they should merge manually
 	fi
 
-	echo "OK - DONE"
-    elif [[ $2 == "to" ]]; then
-	echo "not yet implemented"
-
-    fi
+	echo "DONE"
 else
 
     showUsage

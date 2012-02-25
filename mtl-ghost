@@ -1,0 +1,58 @@
+#!/bin/bash
+
+showUsage() {
+    cat <<EOF
+Usage: 1
+ghost ssh://user@host.com:~/mynotes/test
+ghost :ghostname
+EOF
+}
+
+### this is just quick proof of concept version 
+### later we add a way to store remotes
+
+if [ $# -eq 3 ]; then
+    if [ $2 == "to" ]; then
+
+	REM="$3"
+	if [[ "$3" =~ ^: ]]; then
+	    REM=`cat .mtl/.ghosts | grep "^:\s" | head -n 1 | cut -f 2`
+	fi
+
+
+	tempdir="/tmp/mtl/blobs"
+	mkdir -p ${tempdir}
+	echo "copying the mtl ${1} dir to remote ($todir) location.."
+
+	echo "copying wrk index and src files to $REM"
+
+	scp .mtl/${1}* ${REM}/.mtl/.
+	#get blobs and copy them
+	for blob in `cat .mtl/${1}.index | cut -f 1 | uniq` 
+	do
+	    echo "copying blob: $blob to temp"
+	    cp .mtl/d/$blob ${tempdir}/.
+	done
+	rsync -avz ${tempdir}/. ${REM}/.mtl/d/.
+	echo "DONE"
+    else
+	showUsage
+    fi
+elif [ $# -eq 2 ]; then
+
+    REM="$2"
+    if [[ "$2" =~ ^: ]]; then
+	REM=`cat .mtl/.ghosts | grep "^:\s" | head -n 1 | cut -f 2`
+    fi
+
+    if [ $1 == "to" ]; then
+	echo "rsyncing the mtl dir to $REM"
+	rsync -avz .mtl ${REM}/.mtl
+	echo "DONE"
+    else
+	showUsage
+    fi
+else
+    showUsage
+fi
+
