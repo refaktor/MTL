@@ -2,9 +2,10 @@
 
 showUsage() {
     cat <<EOF
-Usage: 1
-ghost ssh://user@host.com:~/mynotes/test
-ghost :ghostname
+Usage:
+mirror to ssh://user@host.com:~/mynotes/test
+mirror to :main
+mirror doc to :design
 EOF
 }
 
@@ -20,9 +21,16 @@ if [ $# -eq 3 ]; then
 	fi
 
 
+	if [[ $REM =~ ":" ]]; then
+	    dest1=`echo $REM | cut -f 1 -d ":"`
+	    dest2=`echo $REM | cut -f 2 -d ":"`
+	    ssh $dest1 "mkdir -p ${dest2}/.mtl/d"
+	else
+	    mkdir -p ${REM}/.mtl/d
+	fi
+
 	tempdir="/tmp/mtl/blobs"
 	mkdir -p ${tempdir}
-	echo "copying the mtl ${1} dir to remote ($todir) location.."
 
 	echo "copying wrk index and src files to $REM"
 
@@ -31,8 +39,8 @@ if [ $# -eq 3 ]; then
 	for blob in `cat .mtl/${1}.index | cut -f 1 | uniq` 
 	do
 	    echo "copying blob: $blob to temp"
-	    cp .mtl/d/$blob ${tempdir}/.
-	done
+	    cp -a .mtl/d/$blob ${tempdir}/.	
+done
 	rsync -avz ${tempdir}/. ${REM}/.mtl/d/.
 	echo "DONE"
     else
@@ -47,7 +55,7 @@ elif [ $# -eq 2 ]; then
 
     if [ $1 == "to" ]; then
 	echo "rsyncing the mtl dir to $REM"
-	rsync -avz .mtl ${REM}/.mtl
+	rsync -avz .mtl/* ${REM}/.mtl
 	echo "DONE"
     else
 	showUsage

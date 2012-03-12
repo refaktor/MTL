@@ -9,9 +9,9 @@ EOF
 
 if [ $# -eq 0 ]; then
     if [ ! -d ".mtl" ] ; then
-	mkdir .mtl
-	mkdir .mtl/d
+	mkdir -p .mtl/d
 	mkdir .mtl/remote
+	touch .mtl/remote/mock
     fi
 else
     showUsage

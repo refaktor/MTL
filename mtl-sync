@@ -10,13 +10,13 @@ EOF
 
 if [ $# -eq 3 ]; then
     if [[ $2 == "from" ]]; then
-
+	
 	REM="$3"
 	if [[ "$3" =~ ^: ]]; then
 	    REM=`cat .mtl/.peers | grep "^:\s" | head -n 1 | cut -f 2`
 	    echo "PEERS GHOST IS ON $REM"
 	fi
-
+	
 # we sync just specific doc
     # copy the remote index here
 	echo "DELETING OLD TEMP INDEXES"
@@ -51,11 +51,11 @@ if [ $# -eq 3 ]; then
 	THEIRBL=`tail -n 1 .mtl/remote/${1}.index | cut -f 1`
 	
 	if [[ $MYBL == $THEIRBL ]]; then 
-
+	    
 	    echo "NO MERGING NECESSARY"
 
 	else
-
+	    
 	    echo "GETTING THE BLOBS"
 	    for blob in `comm -13 <(cat .mtl/${1}.index | cut -f 1 | uniq | sort) <(cat .mtl/remote/${1}.index | cut -f 1 | uniq | sort)` 
 	    do
@@ -74,11 +74,12 @@ if [ $# -eq 3 ]; then
 	# else
 	# warn about conflict and that they should merge manually
 	fi
-
+	
 	echo "DONE"
+    else
+	showUsage
+    fi
 else
-
-    showUsage
-
+    showUsage    
 fi
 
