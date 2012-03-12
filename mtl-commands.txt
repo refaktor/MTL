@@ -1,29 +1,31 @@
-#
-#These are the commands available
-#
-init	      initializes the .mtl dir in current path
-create	      creates a doc
-ls	      lists docs
+MTL - v001, think MultiToolL. Everything is very WIP!
+
+#main commands
+
+init	      initializes the .mtl dir in currend dir
+create	      creates a document
+ls	      lists documents
 store	      stores changes to index
 get	      gets changes from stored to working file
 cat	      cats document (working, stored, has many aditional options)
 diff	      diffs document (working to stored, between stored)
-link	      crates a symbolic link in current dir to working doc in .mtl
-unlink	      removes symbolic link to doc
-rm	      removes a doc
+link	      crates a symbolic link in current dir to working document
+unlink	      removes symbolic link to document
+rm	      removes a documant
 merge	      merges two indexes
-log	      displays a log of stores
-copy	      copies a repo or single doc in repo to remote location (you can sync after inital copy)
-sync	      syncs whole repos or separate docs with remote location (for colaborative work)
-mirror	      mirrors your repo to (or from) remote location (usually just to should make sense)
+log	      displays a log of a document
+mirror	      mirrors your repo or document to remote location
+sync	      syncs your repo or doument with remote location
 extract	      shortcut to cat todo, store, link
-#
+
+
 #internal commands
-#
+
 gethead		gets the head blob of doc
 toindex		.
 toblob		.	
 funcs		utility functions
-#
-#!! MTL is still very heavily WIP!!
-#	
+
+############################################################################
+#   MTL is still very heavily WIP 
+############################################################################
