@@ -1,0 +1,15 @@
+#!/bin/bash
+. mtl-funcs
+
+showUsage() {
+    cat <<EOF
+Usage: 
+daily fwd
+EOF
+}
+
+if [ $# -gt 1 ] && [[ "$1" == "fwd" ]]; then
+    mtl-extract :yday to :today unlink
+else
+    showUsage
+fi

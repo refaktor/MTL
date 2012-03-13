@@ -17,6 +17,7 @@ copy	      copies a repo or single doc in repo to remote location (you can sync 
 sync	      syncs whole repos or separate docs with remote location (for colaborative work)
 mirror	      mirrors your repo to (or from) remote location (usually just to should make sense)
 extract	      shortcut to cat todo, store, link
+daily	      higher level operations on daily level 
 #
 #internal commands
 #
