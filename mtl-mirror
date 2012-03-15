@@ -57,6 +57,10 @@ elif [ $# -eq 2 ]; then
 	echo "rsyncing the mtl dir to $REM"
 	rsync -avz .mtl/* ${REM}/.mtl
 	echo "DONE"
+    elif [ $1 == "from" ]; then
+	echo "rsyncing the mtl dir from $REM"
+	rsync -avz ${REM}/.mtl/* .mtl
+	echo "DONE"
     else
 	showUsage
     fi
