@@ -17,52 +17,65 @@ if [ $# -eq 3 ]; then
 
 	REM="$3"
 	if [[ "$3" =~ ^: ]]; then
-	    REM=`cat .mtl/.ghosts | grep "^:\s" | head -n 1 | cut -f 2`
-	fi
-
-
-	if [[ $REM =~ ":" ]]; then
-	    dest1=`echo $REM | cut -f 1 -d ":"`
-	    dest2=`echo $REM | cut -f 2 -d ":"`
-	    ssh $dest1 "mkdir -p ${dest2}/.mtl/d"
+	    REM=`cat .mtl/.mirrors | grep "^$2" | head -n 1 | cut -f 2`
 	else
-	    mkdir -p ${REM}/.mtl/d
+	    echo "Failed: No mirror with that name."
+	    REM=""
 	fi
 
-	tempdir="/tmp/mtl/blobs"
-	mkdir -p ${tempdir}
-
-	echo "copying wrk index and src files to $REM"
-
-	scp .mtl/${1}* ${REM}/.mtl/.
+	if [[ $REM != "" ]]; then
+	    if [[ $REM =~ ":" ]]; then
+		dest1=`echo $REM | cut -f 1 -d ":"`
+		dest2=`echo $REM | cut -f 2 -d ":"`
+		ssh $dest1 "mkdir -p ${dest2}/.mtl/d"
+	    else
+		mkdir -p ${REM}/.mtl/d
+	    fi
+	    
+	    tempdir="/tmp/mtl/blobs"
+	    mkdir -p ${tempdir}
+	    
+	    echo "copying wrk index and src files to $REM"
+	    
+	    scp .mtl/${1}* ${REM}/.mtl/.
 	#get blobs and copy them
-	for blob in `cat .mtl/${1}.index | cut -f 1 | uniq` 
-	do
-	    echo "copying blob: $blob to temp"
-	    cp -a .mtl/d/$blob ${tempdir}/.	
-done
-	rsync -avz ${tempdir}/. ${REM}/.mtl/d/.
-	echo "DONE"
+	    for blob in `cat .mtl/${1}.index | cut -f 1 | uniq` 
+	    do
+		echo "copying blob: $blob to temp"
+		cp -a .mtl/d/$blob ${tempdir}/.	
+	    done
+	    rsync -avz ${tempdir}/. ${REM}/.mtl/d/.
+	    echo "DONE"
+	else
+	    showUsage
+	fi
     else
 	showUsage
     fi
 elif [ $# -eq 2 ]; then
-
+    
     REM="$2"
     if [[ "$2" =~ ^: ]]; then
-	REM=`cat .mtl/.ghosts | grep "^:\s" | head -n 1 | cut -f 2`
+	REM=`cat .mtl/.mirrors | grep "^$2" | head -n 1 | cut -f 2`
+	echo $REM
     fi
 
-    if [ $1 == "to" ]; then
-	echo "rsyncing the mtl dir to $REM"
-	rsync -avz .mtl/* ${REM}/.mtl
-	echo "DONE"
-    elif [ $1 == "from" ]; then
-	echo "rsyncing the mtl dir from $REM"
-	rsync -avz ${REM}/.mtl/* .mtl
-	echo "DONE"
+    if [[ $REM != "" ]]; then
+	
+	if [ $1 == "to" ]; then
+	    echo "rsyncing the mtl dir to $REM"
+	    rsync -avz .mtl/* ${REM}/.mtl
+	    echo "DONE"
+	elif [ $1 == "from" ]; then
+	    echo "rsyncing the mtl dir from $REM"
+	    rsync -avz ${REM}/.mtl/* .mtl
+	    echo "DONE"
+	else
+	    showUsage
+	fi
     else
-	showUsage
+	echo "Failed: No mirror with that name."
+	REM=""
     fi
 else
     showUsage
