@@ -4,14 +4,29 @@ showUsage() {
     cat <<EOF
 Usage: 
 ls ~ lists all documents
+ls late ~ lists all documents
 EOF
 }
 
 # todo make it accept a pattern like ls
-
+CMD=""
 if [ $# -eq 0 ]; then
-    ls .mtl/*.index | cut -d "." -f 2 | cut -d "/" -f 2
-else
-    showUsage
+    CMD="ls -tr .mtl/*.index | cut -d "." -f 2 | cut -d "/" -f 2"
+elif [ $# -eq 1 ]; then #filters
+    if [ $1 == "late" ]; then
+	CMD="$CMD | tail"
+    fi
+    if [ $1 == "days" ]; then
+	CMD="$CMD | grep '^[0-9]\{4\}\-[0-9]\{2\}*\-[0-9]\{2\}$'"
+    fi
+    if [ $1 == "nondays" ]; then
+	CMD="$CMD | grep -v '^[0-9]\{4\}\-[0-9]\{2\}*\-[0-9]\{2\}$'"
+    fi
 fi
 
+if [ "$CMD" == "" ]; then 
+    showUsage
+else
+	#echo "$CMD"
+    eval "$CMD"
+fi
