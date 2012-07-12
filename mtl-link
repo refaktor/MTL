@@ -5,12 +5,17 @@ showUsage() {
     cat <<EOF
 Usage: 
 link doc ~ links doc in .mtl to the current dir
+link :today ~ links todays date doc in .mtl to the current dir
+link :today spec ~ links todays date doc in .mtl to the current dir as mtl-today
 EOF
 }
 
 if [ $# -eq 1 ]; then
     DOC=$(getdoc $1)
     ln -s .mtl/${DOC} ./${DOC}
+elif [ $# -eq 2 ] && [[ $2 == "spec" ]] && [[ $1 =~ ^: ]]; then
+    DOC=$(getdoc $1)
+    ln -s .mtl/${DOC} ./mtl-${1:1}
 else
     showUsage
 fi
