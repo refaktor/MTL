@@ -15,7 +15,7 @@ if [ $# -eq 1 ]; then
     ln -s .mtl/${DOC} ./${DOC}
 elif [ $# -eq 2 ] && [[ $2 == "spec" ]] && [[ $1 =~ ^: ]]; then
     DOC=$(getdoc $1)
-    ln -s .mtl/${DOC} ./mtl-${1:1}
+    ln -s .mtl/${DOC} ./${1:1}
 else
     showUsage
 fi
