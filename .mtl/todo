@@ -1,0 +1,8 @@
+#TODO
+
++ improved parser a lot
++ make parser work over newlines (with 2 spaces)
++ made basic HTML renderer
+
+- make structurer 
+  this will also enable us to make better commandline tools (more high level) and better manipulation display of html

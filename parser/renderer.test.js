@@ -5,69 +5,70 @@ var rn = require('./renderer.js');
 
 var sample = [{type:"#", cont:["this is title"]},{type:"-",cont:["this", " ", "is test", {t:"urgent",v:"3",r:"!!!"} ]}];
 var sample2 = [
-	       {
-		   "type": "#",
-		   "cont": [
-         "TITLE"
-      ]
-	       },
-	       {
-		   "type": "sepa",
-		   "cont": ""
-	       },
-	       {
-		   "type": "##",
-		   "cont": [
-         "project"
-      ]
-	       },
-	       {
-		   "type": "-",
-		   "cont": [
-			    " ",
-			    "twitter",
-			    " ",
-			    "tatt",
-			    " ",
+	       "asd",
+   [
+      [
+         [
 {
-    "t": "urgent",
-    "v": 3,
-    "r": "!!!"
-},
-			    " ",
-{
-    "t": "work",
-    "r": "W"
+    "type": "-",
+    "cont": [
+                  "asdasd"
+               ]
 }
-      ]
-	       },
-	       {
-		   "type": "+",
-		   "cont": [
-			    " ",
-			    "done",
-			    " ",
-         "done"
-      ]
-	       },
-	       {
-		   "type": "~",
-		   "cont": [
-			    " ",
-			    "asdasdas",
-			    "  ",
-			    "asdasd",
+         ]
+       ],
+      "",
+      [
+       "asdsd",
+         [
 {
-    "t": "br"
-},
-			    "asdasd",
-			    " ",
-			    "asd",
-			    " ",
-         "asdasasd"
+    "type": "-",
+    "cont": [
+	     " ",
+                  "asdasd"
+               ]
+}
+         ]
       ]
-	       }
+    ],
+	       "title",
+   [
+      [
+         [
+{
+    "type": "-",
+    "cont": [
+	     " ",
+                  "asdasd"
+               ]
+}
+	  ],
+         "ST",
+         [
+{
+    "type": "-",
+    "cont": [
+	     " ",
+	     "asdasd",
+	     " ",
+                  "1"
+               ]
+},
+{
+    "type": "-",
+    "cont": [
+	     " ",
+	     "asdas",
+	     " ",
+                  "32"
+               ]
+}
+         ]
+      ]
+    ],
+   "asd"
 ];
 
-console.log(rn.render(sample2));
+//console.log(rn.render(sample2));
+console.log(rn.renderTpl(sample2));
 
