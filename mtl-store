@@ -8,7 +8,7 @@ store wrk "the comment" ~ stores the workign doc to index
 EOF
 }
 
-if [ $# -eq 1 ]; then
+if [ $# -lt 3 ] && [ $# -gt 0 ]; then
     DOC=$(getdoc $1)
     hash=`mtl-toblob $DOC`
     UN="$USER@$HOSTNAME"

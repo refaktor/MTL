@@ -1,0 +1,49 @@
+start
+  = line+
+
+line
+  = op1:opener lc1:linecont+ "\n"*
+  { return { type: op1, cont: lc1 } }
+
+linecont
+  = w1:word { return w1.join("") } / 
+    u1:urgent { return { t: "urgent", v: u1.length }  } / 
+    w1:space { return w1.join("") } / 
+    s1:special { return s1[1] } /
+    s2:separator { return s2 }
+
+special
+  = "[" (
+       pp1:progress { return {t: "prog", v: pp1 } } /
+       pp2:priority { return {t: "prior", v: pp2 } } /
+       pp3:work { return {t: "work", v: pp3 } } /
+       attime) "]"
+
+separator
+  = "="+ { return "" }
+
+progress
+  = x:[+-]+ { return x.join("") }
+
+priority
+  = x:[0-9]+ { return parseInt(x.join("")) }
+
+work
+  = x:[Ww] { return "W" }
+
+attime
+  = "at " [0-9]+ (":" [0-9]+ / "h")
+
+word
+  = [a-zA-Z]+
+
+space
+  = [,. ]+
+
+opener                                                                                                                      
+  = t:("#"+/"+"+/"-"+/"~"+/) { return t.join("") }
+
+urgent
+  = "!"+
+
+
