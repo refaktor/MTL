@@ -67,7 +67,7 @@ if [ $# -eq 3 ]; then
 	    
 	    echo "diff3 -m .mtl/d/$MYBL .mtl/d/$OLDBL .mtl/d/$THEIRBL | tee .mtl/$1"
 	    
-	    diff3 -m .mtl/d/$MYBL .mtl/d/$OLDBL .mtl/d/$THEIRBL | tee .mtl/$1
+	    diff3 -L local -L old -L remote -m .mtl/d/$MYBL .mtl/d/$OLDBL .mtl/d/$THEIRBL | tee .mtl/$1
 	    
 	# if no conflict
 	# create new index with adition of this merge

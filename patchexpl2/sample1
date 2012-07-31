@@ -1,0 +1,2 @@
+diff3 -L ours -L old -L theirs -m a3 a1 a2
+

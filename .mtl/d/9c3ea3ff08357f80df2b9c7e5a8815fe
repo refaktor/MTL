@@ -1,0 +1,10 @@
+#PLAN
+
++ diff3 uporablja 3x -L label da določiš local old remote
+- mtl-sync deluje na enem dokumentu remote
+- pogruntat kako bi fajle rsyncali lokalno (a ne izgubili starih) in potem mergali
+  * rsyncamo bloble (so immutable)
+  * z rsync dry-run in še nekim drugim dobimo vse spremenjene index-e
+  * pri indexih najdemo common old file in naredimo 3diff -m z old blobom in zadnjima dvema bloboma ki sta že lokalno, javimo če je konflikt 
+  * pri tem si shranimo najzadnejši datum spremembe
+  * ko mirorramo gor, preverimo datum, če je sedaj novejši online potem mormo narediti sync
