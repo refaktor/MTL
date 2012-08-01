@@ -6,10 +6,19 @@ module.exports =
 	foot = "</body></html>";
 	
 	var topWrap = {
+	    "" : "p",
 	    "-": "li class='todo'",
 	    "+": "li class='done'",
 	    "*": "li class='norm'",
 	    "~": "li class='later'"
+	};
+
+	var topEnds = {
+	    "" : "",
+	    "-": " <a href=''>check</a>",
+	    "+": " <span class='done'>done</span>",
+	    "*": "",
+	    "~": ""
 	};
 
 	
@@ -30,12 +39,12 @@ module.exports =
 	};
 
 	var lines = function(d) {
-	    return _._c.reduce(function(acc, x){return acc + _._.wrap(line(x.type, x.cont), "li class='"+x.type+"'"); }, d, "");
+	    return _._c.reduce(function(acc, x){return acc + _._.wrap(line(x.type, x.cont), topWrap[x.type]); }, d, "");
 	};
 
 
 	var line = function(type, cont) {
-	    return _._c.reduce(function(acc, x){return acc + ((typeof x=="string")?x:inline(x.t,x.v,x.r)); }, cont, "");
+	    return _._c.reduce(function(acc, x){return acc + ((typeof x=="string")?x:inline(x.t,x.v,x.r)); }, cont, "")+topEnds[type];
 	};
 
 	var inline = function(t, v, r) {

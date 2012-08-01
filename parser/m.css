@@ -1,14 +1,33 @@
 body {
-    font-family: Arial;
+    font-family: "Trebuchet MS", Arial;
     padding: 20px;
+    font-size: 12px;
 }
 
-div {
-    border: 1px solid silver;
-    padding 10px;
-    margin: 3px;
+h1 {
+    color: gray;
+    margin: 15px 0 0 0;
 }
 
-li {
-    
+h2 {
+    margin: 8px 0 0 0;
+    color: gray;
+}
+
+div.title {
+    ___border: 1px solid silver;
+    padding: 2px;
+}
+
+li.todo {
+    color: #322;
+}
+li.done {
+    color: #777;
+}
+li.later {
+    color: #444;
+}
+li.norm {
+    color: #222;
 }
