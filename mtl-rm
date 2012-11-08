@@ -4,7 +4,7 @@
 showUsage() {
     cat <<EOF
 Usage: 
-store wrk "the comment" ~ stores the workign doc to index
+rm wrk "the comment" ~ stores the workign doc to index
 EOF
 }
 

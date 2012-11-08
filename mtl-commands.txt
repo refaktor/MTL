@@ -1,7 +1,6 @@
-MTL - v001, think MultiToolL. Everything is very WIP!
+MTL - v001, Montreal
 
 #main commands
-
 init	      initializes the .mtl dir in currend dir
 create	      creates a document
 ls	      lists documents
@@ -11,7 +10,8 @@ cat	      cats document (working, stored, has many aditional options)
 diff	      diffs document (working to stored, between stored)
 link	      crates a symbolic link in current dir to working document
 unlink	      removes symbolic link to document
-rm	      removes a documant
+mv	      renames a document
+rm	      removes a document
 merge	      merges two indexes
 log	      displays a log of a document
 mirror	      mirrors your repo or document to remote location
@@ -19,9 +19,7 @@ sync	      syncs your repo or doument with remote location
 extract	      shortcut to cat todo, store, link
 daily	      higher level operations on daily level 
 
-
 #internal commands
-
 gethead		gets the head blob of doc
 toindex		.
 toblob		.	
