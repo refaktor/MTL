@@ -2,10 +2,7 @@
 
 *!THIS IS WORK IN PROGRESS!*
 
-Simple bash/*ix based backend for notes/todo tool for my work. Inspired partially by `how I imagine Git works`, 
-but trying to be 1 level simpler for end users (because the problem is simpler). 
-
-On top of it a parser will be built based on ideas from http://www.qwikitodo.com and other prototypes I made.
+Simple bash based backend for notes/todo tool for my work. Imagine it as very dumb git :).
 
 ##Core goals / ideas
 
