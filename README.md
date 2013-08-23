@@ -37,18 +37,18 @@ at the end of day (could store state in the meantime)
 
 ###One-off documents with tracking of changes, etc
 
-in the morning before work
+We create the document and start writing:
 
       cd ~
       mtl create my-book
       mtl link my-book
       emacs my-book
 	
-after some writing
+After some writing:
 
       mtl store my-book "Wrote the first chapter"
 
-after some days of writing
+After few days of writing:
 
       mtl log my-book
       mtl diff my-book 1 #compare working doc to previously stored version
