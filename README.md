@@ -1,6 +1,6 @@
 #MTL
 
-**!!!THIS IS HEAVILY WORK IN PROGRESS!!!**
+*!THIS IS WORK IN PROGRESS!*
 
 Simple bash/*ix based backend for notes/todo tool for my work. Inspired partially by `how I imagine Git works`, 
 but trying to be 1 level simpler for end users (because the problem is simpler). 
@@ -17,20 +17,20 @@ On top of it a parser will be built based on ideas from http://www.qwikitodo.com
 ##State
 
 I am using it for my daily todo-s for 2 years now. I linked it to a dropbox folder so I have it synced on all my 
-computers, so the syncing code will be removed.
+computers, so the syncing code will be removed. For todo, a propper parser should be finished, then we could add 
+propper TODO/List specific MTL commands.
 
 ##Few example workflows
 
 ###My daily routine for TODO-s
 
-
-in the morning before work
+In the morning before work:
 
       cd ~
       mtl daily fwd #extracts undone stuff from yesterday to todays todo, unlinks the yesterdays todo
       emacs 20<tab> #opens todays file for example 2013-08-23
 	
-at the end of day (could store state in the meantime)
+At the end of day (could store state in the meantime):
 	
       mtl store :today
 
