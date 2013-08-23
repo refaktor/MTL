@@ -2,7 +2,7 @@
 
 *!THIS IS WORK IN PROGRESS!*
 
-Simple bash based backend for notes/todo tool for my work. Imagine it as very dumb git :).
+Simple bash based backend for notes/todos. Imagine it as very dumb git (in it's best possible sense) :).
 
 ##Core goals / ideas
 
