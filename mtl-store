@@ -8,12 +8,17 @@ store wrk "the comment" ~ stores the workign doc to index
 EOF
 }
 
-if [ $# -lt 3 ] && [ $# -gt 0 ]; then
+if [ $# -gt 0 ]; then
     DOC=$(getdoc $1)
     hash=`mtl-toblob $DOC`
+    src=`cat .mtl/${DOC}.src`
     UN="$USER@$HOSTNAME"
-    mtl-toindex $DOC "$hash" `cat .mtl/${DOC}.src` "$UN" "$2"
-    echo "$hash" | cat > .mtl/$DOC.src
+    if [ $hash != $src ] || [[ "$2" != "" ]]; then
+	mtl-toindex $DOC "$hash" `cat .mtl/${DOC}.src` "$UN" "$2"
+	echo "$hash" | cat > .mtl/$DOC.src
+    else
+	echo "no changes from last store"
+    fi
 else
     showUsage
 fi
