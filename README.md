@@ -27,7 +27,7 @@ In the morning before work:
       mtl daily fwd #extracts undone stuff from yesterday to todays todo, unlinks the yesterdays todo
       emacs 20<tab> #opens todays file for example 2013-08-23
 	
-At the end of day (could store state in the meantime):
+At the end of day (you can use store at any point):
 	
       mtl store :today
 
