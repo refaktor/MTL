@@ -2,7 +2,8 @@
 
 **!!!THIS IS HEAVILY WORK IN PROGRESS!!!**
 
-Simple bash/*ix based backend for notes/todo tool for my work. Inspired partially by `how I imagine Git works`, but trying to be 1 level simpler for end users (because the problem is simpler). 
+Simple bash/*ix based backend for notes/todo tool for my work. Inspired partially by `how I imagine Git works`, 
+but trying to be 1 level simpler for end users (because the problem is simpler). 
 
 On top of it a parser will be built based on ideas from http://www.qwikitodo.com and other prototypes I made.
 
@@ -11,14 +12,28 @@ On top of it a parser will be built based on ideas from http://www.qwikitodo.com
 - Your todos/notes should be where your work is (in the directory of your project) or if it's todo for You (generally) in your home directory
 - Your todos should give you not just direction for the future, but overview of your past
 - Your todos should work well in in-zone state of mind (for me that means no clicking around, nowysiwyg, writing them in the same environment as I code my code)
-- we *TRY* to use functional prog. principles (like immutability) and old Unix soul to gain simplicity of mechanics, implementation and workflow ;)
+- I *TRY* to use functional prog. principles (like immutability) and old Unix soul to gain simplicity of mechanics, implementation and workflow ;)
 
 ##State
 
-We are making the basic backend work. On a proof of concept level we prooved it can work OK, so we are making it 
-usable so we can start using as soon as possible (and then develop further). 
+I am using it for my daily todo-s for 2 years now. I linked it to a dropbox folder so I have it synced on all my 
+computers, so the syncing code will be removed.
 
 ##Few example workflows
+
+###My daily routine
+
+
+in the morning before work
+
+      cd ~
+      mtl daily fwd #extracts undone stuff from yesterday to todays todo, unlinks the yesterdays todo
+      emacs 20<tab> #opens todays file for example 2013-08-23
+	
+at the end of day (could store state in the meantime)
+	
+      mtl store :today
+
 
 ###Personal daily todos
 
