@@ -21,7 +21,7 @@ computers, so the syncing code will be removed.
 
 ##Few example workflows
 
-###My daily routine
+###My daily routine for TODO-s
 
 
 in the morning before work
@@ -33,6 +33,37 @@ in the morning before work
 at the end of day (could store state in the meantime)
 	
       mtl store :today
+
+
+###One-off documents with tracking of changes, etc
+
+in the morning before work
+
+      cd ~
+      mtl create my-book
+      mtl link my-book
+      emacs my-book
+	
+after some writing
+
+      mtl store my-book "Wrote the first chapter"
+
+after some days of writing
+
+      mtl log my-book
+      mtl diff my-book 1 #compare working doc to previously stored version
+      emacs my-book
+      ...
+      
+
+
+###.
+###.
+###.
+###Older docs
+###.
+###.
+###.
 
 
 ###Personal daily todos
