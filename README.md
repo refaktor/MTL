@@ -60,11 +60,14 @@ After few days of writing:
 ###.
 ###.
 ###.
+###.
+###.
 ###Older docs
 ###.
 ###.
 ###.
-
+###.
+###.
 
 ###Personal daily todos
 
@@ -176,21 +179,17 @@ Runs on Linux and Cygwin (should work on macs too.. if you try please report).
 
 GNU GPL v2
 
-##.
-##.
-##.
-##.
-##.
-##.
-##.
-##.
-##.
-
-
-
-
-
-##----PART OF OLD README -----
+###.
+###.
+###.
+###.
+###.
+###Yer older docs
+###.
+###.
+###.
+###.
+###.
 
 Things will of course get streamlined and automated as much as it makes sense. This is heavily WIP!
 
