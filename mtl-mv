@@ -8,12 +8,12 @@ mv wrk wrk2 - moves / renames the document
 EOF
 }
 
-if [ $# -eq 1 ]; then
+if [ $# -eq 2 ]; then
     DOC1=$(getdoc $1)
     DOC2=$(getdoc $2)
-    vm .mtl/${DOC1} .mtl/${DOC2}
-    rm .mtl/${DOC1}.index .mtl/${DOC2}.index
-    rm .mtl/${DOC1}.src .mtl/${DOC2}.src
+    mv .mtl/${DOC1} .mtl/${DOC2}
+    mv .mtl/${DOC1}.index .mtl/${DOC2}.index
+    mv .mtl/${DOC1}.src .mtl/${DOC2}.src
 else
     showUsage
 fi
